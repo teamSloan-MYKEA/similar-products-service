@@ -1,12 +1,12 @@
 const express = require('express');
 const app = express();
 const db = require('../database/db.js');
-const seed = require('../database/seed.js');
+const dataGenerator = require('../database/dataGenerator.js');
 
 
 
 app.post('/', (req, res) => {
-  seed.generateData();
+  // dataGenerator.generateData();
 });
 
 
