@@ -1,13 +1,13 @@
 # Project Name
 
-> Project description
+> This is Team O'Malley's Front End Capstone project detailing an items page from IKEA. Each member of the team was tasked to build part of the page using React components and persistent data that mimic the website.
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/hrr47-fec-omalley/main-title-pictures-service
+  - https://github.com/hrr47-fec-omalley/add-to-bag-service
+  - https://github.com/hrr47-fec-omalley/reviews-service
+  - https://github.com/hrr47-fec-omalley/similar-products-service
 
 ## Table of Contents
 
@@ -27,6 +27,7 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 - etc
 
 ## Development
+
 
 ### Installing Dependencies
 
