@@ -1,10 +1,13 @@
 const express = require('express');
 const app = express();
 const db = require('../database/db.js');
+const seed = require('../database/seed.js');
 
 
 
-
+app.post('/', (req, res) => {
+  seed.generateData();
+});
 
 
 db.connect.on('error', console.error.bind(console, 'connection error:'));
@@ -17,4 +20,4 @@ const port = 3001;
 
 app.listen(port, () => {
   console.log(`Connected to server on port ${port}`);
-})
+});
