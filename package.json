@@ -1,17 +1,30 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
+  "name": "similar-products-service",
+  "description": "> Project description",
   "author": "",
-  "license": "",
+  "license": "ISC",
   "engines": {
     "node": ">=6.13.0"
   },
   "scripts": {
+    "server-dev": "nodemon ./server/index.js --watch"
   },
   "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.9.27"
   },
   "devDependencies": {
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
-  }
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor.git"
+  },
+  "version": "1.0.0",
+  "main": ".eslintrc.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hrr47-fec-omalley/similar-products-service.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/hrr47-fec-omalley/similar-products-service/issues"
+  },
+  "homepage": "https://github.com/hrr47-fec-omalley/similar-products-service#readme"
 }
