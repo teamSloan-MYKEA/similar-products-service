@@ -7,12 +7,14 @@
     "node": ">=6.13.0"
   },
   "scripts": {
+    "test": "jest",
     "client-dev": "webpack --watch",
     "server-dev": "nodemon ./server/index.js --watch",
     "seed": "node ./seed.js"
   },
   "dependencies": {
     "express": "^4.17.1",
+    "jest": "^26.2.2",
     "mongoose": "^5.9.27"
   },
   "devDependencies": {
