@@ -3,7 +3,7 @@ const app = express();
 const db = require('../database/db.js');
 const dataGenerator = require('../database/dataGenerator.js');
 
-
+app.use(express.static('dist'));
 
 app.post('/', (req, res) => {
   // dataGenerator.generateData();
