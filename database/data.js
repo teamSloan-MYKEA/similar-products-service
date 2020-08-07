@@ -47,12 +47,12 @@ const photos = [
     'ulriksberg-armchair__2.webp'],
   ['vedbo-armchair__1.webp',
     'vedbo-armchair__2.webp'],
-]
+];
 
 module.exports = {
-  names: names,
-  descriptions: descriptions,
-  prices: prices,
-  photos: photos,
-  AWS: AWS
+  names,
+  descriptions,
+  prices,
+  photos,
+  AWS,
 };
