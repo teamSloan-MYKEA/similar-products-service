@@ -5,8 +5,11 @@ const dataGenerator = require('../database/dataGenerator.js');
 
 app.use(express.static('dist'));
 
-app.post('/', (req, res) => {
+app.get('/get', (req, res) => {
   // dataGenerator.generateData();
+  db.SimilarProducts.find().then(products => {
+    res.send(products);
+  }).catch(() => console.log('Did not find products'));
 });
 
 
