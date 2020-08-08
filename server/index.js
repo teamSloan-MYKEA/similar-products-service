@@ -6,7 +6,11 @@ const db = require('../database/db.js');
 
 app.use(express.static('dist'));
 
-app.get('/', (req, res) => {
+app.get('/:id', (req, res) => {
+  const productNumber = req.params.id;
+  db.SimilarProducts.find({ id: productNumber }).then((similarProducts) => {
+    res.send(similarProducts);
+  });
 });
 
 db.connect.on('error', console.error.bind(console, 'connection error:'));
