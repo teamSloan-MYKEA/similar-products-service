@@ -5,12 +5,16 @@ import React from 'react';
 import ProductListEntry from './ProductListEntry';
 
 class SimilarProducts extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     something: '',
-  //   },
-  // };
+  constructor(props) {
+    super(props);
+    this.state = {
+      products: []
+    };
+  }
+
+  componentDidMount() {
+
+  }
 
   render() {
     return(
