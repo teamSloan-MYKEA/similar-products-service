@@ -38,3 +38,4 @@ const generateData = () => {
 };
 
 module.exports.generateData = generateData;
+module.exports.createRandomObj = createRandomObj;
