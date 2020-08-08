@@ -4,13 +4,10 @@ const express = require('express');
 const app = express();
 const db = require('../database/db.js');
 
-// const dataGenerator = require('../database/dataGenerator.js');
-
 app.use(express.static('dist'));
 
-// app.post('/', (req, res) => {
-//   // dataGenerator.generateData();
-// });
+app.get('/', (req, res) => {
+});
 
 db.connect.on('error', console.error.bind(console, 'connection error:'));
 db.connect.once('open', () => {

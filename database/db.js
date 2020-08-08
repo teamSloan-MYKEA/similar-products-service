@@ -5,10 +5,7 @@ mongoose.connect('mongodb://localhost/similar-products', { useNewUrlParser: true
 const db = mongoose.connection;
 
 const similarProductsSchema = mongoose.Schema({
-  // id: {
-  //   type: Number,
-  //   unique: true
-  // },
+  id: Number,
   name: String,
   description: String,
   price: Number,
