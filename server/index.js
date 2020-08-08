@@ -1,23 +1,26 @@
+/* eslint-disable no-console */
 const express = require('express');
+
 const app = express();
 const db = require('../database/db.js');
-const dataGenerator = require('../database/dataGenerator.js');
 
-app.use(express.static('dist'));
+app.use('/', express.static('dist'));
 
-app.get('/get', (req, res) => {
-  // dataGenerator.generateData();
-  db.SimilarProducts.find().then(products => {
-    res.send(products);
-  }).catch(() => console.log('Did not find products'));
+app.get('/photos/:id', (req, res) => {
+  const productNumber = req.params.id;
+  db.SimilarProducts.find({ id: productNumber })
+    .then((similarProducts) => {
+      res.send(similarProducts);
+    })
+    .catch((err) => {
+      throw err;
+    });
 });
-
 
 db.connect.on('error', console.error.bind(console, 'connection error:'));
-db.connect.once('open', function() {
+db.connect.once('open', () => {
   console.log('Connected to DB!');
 });
-
 
 const port = 3001;
 
