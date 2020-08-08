@@ -22,8 +22,7 @@ const generateData = () => {
   let counter = 0;
   while (i >= 1) {
     if (i % 12 === 0) {
-      // eslint-disable-next-line no-plusplus
-      counter++;
+      counter += 1;
     }
     // eslint-disable-next-line max-len
     const newProduct = createRandomObj(counter, data.names, data.descriptions, data.prices, data.photos);
