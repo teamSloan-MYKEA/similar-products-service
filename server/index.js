@@ -10,7 +10,7 @@ app.get('/photos/:id', (req, res) => {
   const productNumber = req.params.id;
   db.SimilarProducts.find({ id: productNumber })
     .then((similarProducts) => {
-      res.send(similarProducts);
+      res.json(similarProducts);
     })
     .catch((err) => {
       throw err;
