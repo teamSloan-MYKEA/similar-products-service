@@ -1,4 +1,7 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart as heartRegular } from '@fortawesome/free-regular-svg-icons';
+import { faHeart as heartSolid } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 
 const Product = styled.div`
@@ -7,8 +10,9 @@ const Product = styled.div`
   font-family: 'Noto Sans';
   font-weight: regular;
   font-size: 12px;
-  width: 25vw;
-  margin: 2px;
+  width: 20vw;
+  position:relative;
+  margin: 1vw;
 `;
 const ProductName = styled.div`
   line-height: 1.42857;
@@ -38,31 +42,77 @@ const Image = styled.img`
   width: 20vw;
 `;
 
+const HeartStyle = {
+  display: 'block',
+  transform: 'scale(2)',
+  height: '40px',
+};
+
+const EmptyDiv = styled.div`
+  height: 40px;
+`;
+
 class ProductListEntry extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentImage: this.props.product.photo1,
+      showHeart: true,
+      showBag: false,
+      like: true,
+    };
+    this.onImageHover = this.onImageHover.bind(this);
+    this.onHeartClick = this.onHeartClick.bind(this);
+  }
+
+  onImageHover() {
+    const { like, showHeart, showBag } = this.state;
+    if (like) {
+      this.setState({
+        showHeart: true,
+      });
+    } else {
+      this.setState({
+        showHeart: !showHeart,
+        showBag: !showBag,
+      });
     }
   }
 
+  onHeartClick() {
+    console.log('clicked');
+    this.setState({
+      like: !this.state.like,
+    })
+  }
+
   render() {
-    const { photo1, photo2, name, description, price } = this.props.product;
+    const {
+      photo1, photo2, name, description, price,
+    } = this.props.product;
+    const { showHeart, showBag } = this.state;
     return (
-      <Product>
+      <Product onMouseOver={this.onImageHover} onMouseLeave={this.onImageHover}>
+        {showHeart
+          ? (
+            <FontAwesomeIcon
+              icon={this.state.like ? heartSolid : heartRegular}
+              // onClick={() => {console.log('here')}}
+              style={HeartStyle}
+            />
+          )
+          : <EmptyDiv />}
         <Image
           src={photo1}
-          onMouseOver={e => (e.target.src = photo2)}
-          onMouseOut={e => (e.target.src = photo1)}
-        >
-        </Image>
+          onMouseOver={(e) => (e.target.src = photo2)}
+          onMouseOut={(e) => (e.target.src = photo1)}
+        />
         <ProductName>{name}</ProductName>
         <ProductDescription>{description}</ProductDescription>
         <ProductPrice>
-          <PriceDetails style={{marginLeft: '-8px'}}>$</PriceDetails>
-            {price}
+          <PriceDetails style={{ marginLeft: '-8px' }}>$</PriceDetails>
+          {price}
           <PriceDetails>.00</PriceDetails>
-          </ProductPrice>
+        </ProductPrice>
         <div className="product-stars">stars</div>
         <MoreOptions>more options</MoreOptions>
       </Product>
