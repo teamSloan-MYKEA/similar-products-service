@@ -1,12 +1,11 @@
 import React from 'react';
-import ProductListEntry from './ProductListEntry';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronCircleRight as rightArrow, faChevronCircleLeft as leftArrow } from '@fortawesome/free-solid-svg-icons';
+import styled from 'styled-components';
 import ProductList from './ProductList';
+import ProductListEntry from './ProductListEntry';
 
 const axios = require('axios');
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart as heartRegular } from '@fortawesome/free-regular-svg-icons';
-import { faHeart as heartSolid, faChevronCircleRight as rightArrow, faChevronCircleLeft as leftArrow } from '@fortawesome/free-solid-svg-icons';
-import styled from 'styled-components';
 
 const MainContainer = styled.div`
 
@@ -14,9 +13,23 @@ const MainContainer = styled.div`
 
 const SimilarProductsContainer = styled.div`
   display: flex;
-  width: 100vw;
+  width: 90vw;
   height: 450px;
   // background-color: green;
+  padding-right: 50px;
+  padding-left: 15px;
+`;
+
+const arrowStyles = {
+  position: 'relative',
+  top: '50%',
+  // margin: '2px',
+  transform: 'scale(1.5)',
+};
+
+const EmptyDiv = styled.div`
+  height: 450px;
+  width: 18px;
 `;
 
 class SimilarProducts extends React.Component {
@@ -26,14 +39,17 @@ class SimilarProducts extends React.Component {
       products: [],
       productsInView: [],
       index: 0,
-      showRightArrow: true,
-      showLeftArrow: true,
-      showHeart: false,
+      showRightArrow: false,
+      showLeftArrow: false,
+      // showHeart: false,
+      // showBag: false,
     };
 
     this.onClickRight = this.onClickRight.bind(this);
     this.onClickLeft = this.onClickLeft.bind(this);
-    // this.toggleArrows = this.toggleArrows.bind(this);
+    // this.onMouseEnter = this.onMouseEnter(this);
+    this.onLeave = this.onLeave.bind(this);
+    this.onHover = this.onHover.bind(this);
   }
 
   componentDidMount() {
@@ -42,7 +58,6 @@ class SimilarProducts extends React.Component {
         this.setState({
           products: similarProducts.data,
           productsInView: similarProducts.data.slice(0, 4),
-          showRightArrow: true,
         });
       })
       .catch((err) => {
@@ -53,7 +68,7 @@ class SimilarProducts extends React.Component {
   onClickRight() {
     const { products, index } = this.state;
     const newIndex = index + 4;
-    console.log(index)
+    // console.log('here');
     if (index <= 4) {
       this.setState({
         productsInView: products.slice(newIndex, newIndex + 4),
@@ -65,33 +80,93 @@ class SimilarProducts extends React.Component {
   onClickLeft() {
     const { products, index } = this.state;
     const newIndex = index - 4;
-    console.log(index)
     if (index >= 4) {
       this.setState({
         productsInView: products.slice(newIndex, newIndex + 4),
         index: newIndex,
+        showLeftArrow: true,
       });
     }
   }
 
-  toggleArrows() {
+  onHover() {
     const { index } = this.state;
+    if (index === 0) {
+      this.setState({
+        showRightArrow: true,
+        showLeftArrow: false,
+      });
+    } if (index === 4) {
+      this.setState({
+        showRightArrow: true,
+        showLeftArrow: true,
+      });
+    } if (index === 8) {
+      this.setState({
+        showRightArrow: false,
+        showLeftArrow: true,
+      });
+    }
+  }
+
+  onLeave() {
+    this.setState({
+      showLeftArrow: false,
+      showRightArrow: false,
+    });
   }
 
   render() {
-    const { productsInView, products, index, showLeftArrow, showRightArrow } = this.state;
+    const {
+      productsInView, products, index, showLeftArrow, showRightArrow,
+    } = this.state;
     return (
       <MainContainer>
         <h1>Similar Products</h1>
-        <SimilarProductsContainer>
-          {showLeftArrow && <FontAwesomeIcon icon={leftArrow} onClick={this.onClickLeft} style={{position: 'relative', top: '50%', margin: '2px'}}/>}
-          <ProductList index={index} products={products} />
-          {showRightArrow && <FontAwesomeIcon icon={rightArrow} onClick={this.onClickRight} style={{position: 'relative', top: '50%', margin: '2px'}}/>}
+        <SimilarProductsContainer onMouseEnter={this.onHover} onMouseLeave={this.onLeave}>
+          {showLeftArrow
+            ? (
+              <FontAwesomeIcon
+                icon={leftArrow}
+                onClick={this.onClickLeft}
+                style={{
+                  position: 'relative',
+                  top: '50%',
+                  transform: 'scale(1.5)',
+                  visibility: this.state.showLeftArrow ? 'visible' : 'hidden',
+                }}
+              />
+            )
+            : <EmptyDiv />}
+          <ProductList
+            index={index}
+            products={products}
+          />
+          {showRightArrow
+            ? (
+              <FontAwesomeIcon
+                icon={rightArrow}
+                onClick={this.onClickRight}
+                style={{
+                  position: 'relative',
+                  top: '50%',
+                  transform: 'scale(1.5)',
+                  visibility: this.state.showRightArrow ? 'visible' : 'hidden',
+                }}
+              />
+            )
+            : <EmptyDiv />}
         </SimilarProductsContainer>
-          <div className="scrollbar">Scrollbar</div>
+        <div className="scrollbar">Scrollbar</div>
       </MainContainer>
     );
   }
 }
 
 export default SimilarProducts;
+
+// checkVisbility () {
+//   if (this.state.showLeftArrow) {
+
+//   }
+// }
