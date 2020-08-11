@@ -3,32 +3,39 @@ import styled from 'styled-components';
 
 const Product = styled.div`
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&display=swap');
   font-family: 'Noto Sans';
-  // flex: 1;
-  // max-width: 200px;
-  width: 150px;
-  padding: 2px;
+  font-weight: regular;
+  font-size: 12px;
+  width: 25vw;
+  margin: 2px;
 `;
 const ProductName = styled.div`
-  font-size: .875rem;
   line-height: 1.42857;
   font-weight: 700;
   text-transform: uppercase;
+  font-size: 14px;
 `;
 const ProductDescription = styled.div`
   font-size: 14px;
 `;
 const ProductPrice = styled.div`
   font-size: 22px;
+  font-weight: 800;
+  position: relative;
+  margin-left: 10px;
+`;
+const PriceDetails = styled.div`
+  display: inline;
+  position: absolute;
+  font-size: 12px;
+  top: 4px;
 `;
 const MoreOptions = styled.div`
-  font-size: 12px;
 `;
 
 const Image = styled.img`
-width: 30vh;
-margin: 15px;
-
+  width: 20vw;
 `;
 
 class ProductListEntry extends React.Component {
@@ -44,14 +51,18 @@ class ProductListEntry extends React.Component {
     return (
       <Product>
         <Image
-        src={photo1}
-        onMouseOver={e=> (e.target.src = photo2)}
-        onMouseOut={e=> (e.target.src = photo1)}>
-
+          src={photo1}
+          onMouseOver={e => (e.target.src = photo2)}
+          onMouseOut={e => (e.target.src = photo1)}
+        >
         </Image>
         <ProductName>{name}</ProductName>
         <ProductDescription>{description}</ProductDescription>
-        <ProductPrice>{price}</ProductPrice>
+        <ProductPrice>
+          <PriceDetails style={{marginLeft: '-8px'}}>$</PriceDetails>
+            {price}
+          <PriceDetails>.00</PriceDetails>
+          </ProductPrice>
         <div className="product-stars">stars</div>
         <MoreOptions>more options</MoreOptions>
       </Product>

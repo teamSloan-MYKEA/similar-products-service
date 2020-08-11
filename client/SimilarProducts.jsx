@@ -8,13 +8,16 @@ import { faHeart as heartRegular } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as heartSolid, faChevronCircleRight as rightArrow, faChevronCircleLeft as leftArrow } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 
+const MainContainer = styled.div`
 
-// const MainContainer = styled.div`
-//   height: 100vh;
-//   width: auto;
-//   display: inline;
-//   border: 1px solid black;
-// `
+`;
+
+const SimilarProductsContainer = styled.div`
+  display: flex;
+  width: 100vw;
+  height: 450px;
+  // background-color: green;
+`;
 
 class SimilarProducts extends React.Component {
   constructor(props) {
@@ -50,7 +53,7 @@ class SimilarProducts extends React.Component {
   onClickRight() {
     const { products, index } = this.state;
     const newIndex = index + 4;
-    console.log(this.state.index)
+    console.log(index)
     if (index <= 4) {
       this.setState({
         productsInView: products.slice(newIndex, newIndex + 4),
@@ -62,30 +65,31 @@ class SimilarProducts extends React.Component {
   onClickLeft() {
     const { products, index } = this.state;
     const newIndex = index - 4;
+    console.log(index)
     if (index >= 4) {
       this.setState({
         productsInView: products.slice(newIndex, newIndex + 4),
         index: newIndex,
-    });
-  }
+      });
+    }
   }
 
   toggleArrows() {
     const { index } = this.state;
   }
 
-
-
   render() {
-    const { productsInView, products, index } = this.state;
+    const { productsInView, products, index, showLeftArrow, showRightArrow } = this.state;
     return (
-      <div>
+      <MainContainer>
         <h1>Similar Products</h1>
-        {this.state.showLeftArrow && <FontAwesomeIcon icon={leftArrow} style={{ position: 'absolute', height: '50%', display: 'inline-block'}} onClick={this.onClickLeft} />}
-        <ProductList index={index} products={products} />
-        {this.state.showRightArrow && <FontAwesomeIcon icon={rightArrow} style={{ position: 'absolute', height: '50%', display: 'inline-block'}} onClick={this.onClickRight} />}
-        {/* <div className="scrollbar">Scrollbar</div> */}
-      </div>
+        <SimilarProductsContainer>
+          {showLeftArrow && <FontAwesomeIcon icon={leftArrow} onClick={this.onClickLeft} style={{position: 'relative', top: '50%', margin: '2px'}}/>}
+          <ProductList index={index} products={products} />
+          {showRightArrow && <FontAwesomeIcon icon={rightArrow} onClick={this.onClickRight} style={{position: 'relative', top: '50%', margin: '2px'}}/>}
+        </SimilarProductsContainer>
+          <div className="scrollbar">Scrollbar</div>
+      </MainContainer>
     );
   }
 }
