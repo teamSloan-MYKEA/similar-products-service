@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as heartRegular } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as heartSolid } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
+import Toast from './Toast';
 
 const Product = styled.div`
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
@@ -58,7 +59,7 @@ class ProductListEntry extends React.Component {
     this.state = {
       showHeart: true,
       showBag: false,
-      like: true,
+      like: false,
     };
     this.onImageHover = this.onImageHover.bind(this);
     this.onHeartClick = this.onHeartClick.bind(this);
@@ -79,24 +80,25 @@ class ProductListEntry extends React.Component {
   }
 
   onHeartClick() {
-    console.log('clicked');
+    // console.log('clicked');
     this.setState({
       like: !this.state.like,
-    })
+    });
   }
 
   render() {
     const {
       photo1, photo2, name, description, price,
     } = this.props.product;
-    const { showHeart, showBag } = this.state;
+    const { showHeart, showBag, like } = this.state;
     return (
-      <Product onMouseOver={this.onImageHover} onMouseLeave={this.onImageHover}>
+      <Product >
+        {like && <Toast name={name} />}
         {showHeart
           ? (
             <FontAwesomeIcon
               icon={this.state.like ? heartSolid : heartRegular}
-              // onClick={() => {console.log('here')}}
+              onClick={this.onHeartClick}
               style={HeartStyle}
             />
           )

@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronCircleRight as rightArrow, faChevronCircleLeft as leftArrow } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 import ProductList from './ProductList';
-import ProductListEntry from './ProductListEntry';
 
 const axios = require('axios');
 
