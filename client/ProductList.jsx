@@ -6,7 +6,7 @@ import ProductListEntry from './ProductListEntry';
 const ParentWrapper = styled.div`
   position: relative;
   width: 100vw;
-  height: 450px;
+  height: 500px;
   overflow: hidden;
   // background-color: red;
   // padding-right: 50px;
@@ -23,7 +23,7 @@ const ProductsContainer = styled.div`
 
 const ProductList = ({ index, products, onLikeBagClick }) => (
   <ParentWrapper>
-    <ProductsContainer style={{ transform: `translateX(-${index * 8.4}%)` }}>
+    <ProductsContainer style={{ transform: `translateX(-${index * 8.35}%)` }}>
       {products.map((product) => (
         <ProductListEntry product={product} onLikeBagClick={onLikeBagClick} />))}
     </ProductsContainer>

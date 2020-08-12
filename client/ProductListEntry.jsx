@@ -96,7 +96,6 @@ class ProductListEntry extends React.Component {
     const { showHeart, showBag, like } = this.state;
     return (
       <Product >
-        {/* {like && <Toast name={name} />} */}
         {showHeart
           ? (
             <FontAwesomeIcon
@@ -125,14 +124,14 @@ class ProductListEntry extends React.Component {
   }
 }
 
-ProductListEntry.propTypes = {
-  product.photo1: PropTypes.string.isRequired,
-  product.photo2: PropTypes.string.isRequired,
-  product.name: PropTypes.string.isRequired,
-  product.description: PropTypes.string.isRequired,
-  product.price: PropTypes.number.isRequired,
-  product.onLikeBagClick: PropTypes.func.isRequired,
+// ProductListEntry.propTypes = {
+//   product.photo1: PropTypes.string.isRequired,
+//   product.photo2: PropTypes.string.isRequired,
+//   product.name: PropTypes.string.isRequired,
+//   product.description: PropTypes.string.isRequired,
+//   product.price: PropTypes.number.isRequired,
+//   product.onLikeBagClick: PropTypes.func.isRequired,
 
-};
+// };
 
 export default ProductListEntry;

@@ -14,9 +14,18 @@ const ToastContainer = styled.div`
 `;
 
 const ToastNotification = styled.div`
+  color: white;
+  background: black;
+  font-size: 10px;
+  padding: 15px 7px 15px 7px;
+  width: 120px;
 `;
 
 const ToastExit = styled.button`
+  color: white;
+  background: black;
+  font-size: 10px;
+  border: 0;
 `;
 
 class Toast extends React.Component {
@@ -26,11 +35,7 @@ class Toast extends React.Component {
       toast: false,
       name: '',
     };
-    this.onBagLikeClick = this.onBagLikeClick.bind(this);
-  }
-
-  onBagLikeClick(name) {
-    console.log(name);
+    // this.onBagLikeClick = this.onBagLikeClick.bind(this);
   }
 
   render() {
@@ -38,16 +43,16 @@ class Toast extends React.Component {
     return (
       <ParentToastContainer>
         {name && (
-        <ToastContainer>
-          <ToastNotification>
-            {name}
-            {' '}
-            is adding to the Shopping Cart.
+          <ToastContainer>
+            <ToastNotification>
+              {name}
+              {' '}
+            was saved to the Shopping Cart.
           </ToastNotification>
-          <ToastExit>
-            VIEW
+            <ToastExit>
+              VIEW
           </ToastExit>
-        </ToastContainer>
+          </ToastContainer>
         )}
       </ParentToastContainer>
     );

@@ -14,7 +14,7 @@ const MainContainer = styled.div`
 const SimilarProductsContainer = styled.div`
   display: flex;
   width: 90vw;
-  height: 450px;
+  height: 500px;
   // background-color: green;
   padding-right: 50px;
   padding-left: 15px;
