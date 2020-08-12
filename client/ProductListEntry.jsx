@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as heartRegular } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as heartSolid } from '@fortawesome/free-solid-svg-icons';
@@ -58,7 +59,7 @@ class ProductListEntry extends React.Component {
     this.state = {
       showHeart: true,
       showBag: false,
-      like: true,
+      like: false,
     };
     this.onImageHover = this.onImageHover.bind(this);
     this.onHeartClick = this.onHeartClick.bind(this);
@@ -79,24 +80,27 @@ class ProductListEntry extends React.Component {
   }
 
   onHeartClick() {
-    console.log('clicked');
+    const { like } = this.state;
+    const { onLikeBagClick, product } = this.props;
+    const { name } = product;
     this.setState({
-      like: !this.state.like,
-    })
+      like: !like,
+    });
+    onLikeBagClick(name);
   }
 
   render() {
     const {
       photo1, photo2, name, description, price,
     } = this.props.product;
-    const { showHeart, showBag } = this.state;
+    const { showHeart, showBag, like } = this.state;
     return (
-      <Product onMouseOver={this.onImageHover} onMouseLeave={this.onImageHover}>
+      <Product >
         {showHeart
           ? (
             <FontAwesomeIcon
-              icon={this.state.like ? heartSolid : heartRegular}
-              // onClick={() => {console.log('here')}}
+              icon={like ? heartSolid : heartRegular}
+              onClick={this.onHeartClick}
               style={HeartStyle}
             />
           )
@@ -119,5 +123,15 @@ class ProductListEntry extends React.Component {
     );
   }
 }
+
+// ProductListEntry.propTypes = {
+//   product.photo1: PropTypes.string.isRequired,
+//   product.photo2: PropTypes.string.isRequired,
+//   product.name: PropTypes.string.isRequired,
+//   product.description: PropTypes.string.isRequired,
+//   product.price: PropTypes.number.isRequired,
+//   product.onLikeBagClick: PropTypes.func.isRequired,
+
+// };
 
 export default ProductListEntry;

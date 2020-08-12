@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronCircleRight as rightArrow, faChevronCircleLeft as leftArrow } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 import ProductList from './ProductList';
-import ProductListEntry from './ProductListEntry';
+import Toast from './Toast';
 
 const axios = require('axios');
 
@@ -14,18 +14,11 @@ const MainContainer = styled.div`
 const SimilarProductsContainer = styled.div`
   display: flex;
   width: 90vw;
-  height: 450px;
+  height: 500px;
   // background-color: green;
   padding-right: 50px;
   padding-left: 15px;
 `;
-
-const arrowStyles = {
-  position: 'relative',
-  top: '50%',
-  // margin: '2px',
-  transform: 'scale(1.5)',
-};
 
 const EmptyDiv = styled.div`
   height: 450px;
@@ -41,15 +34,14 @@ class SimilarProducts extends React.Component {
       index: 0,
       showRightArrow: false,
       showLeftArrow: false,
-      // showHeart: false,
-      // showBag: false,
+      clickedName: '',
     };
 
     this.onClickRight = this.onClickRight.bind(this);
     this.onClickLeft = this.onClickLeft.bind(this);
-    // this.onMouseEnter = this.onMouseEnter(this);
     this.onLeave = this.onLeave.bind(this);
     this.onHover = this.onHover.bind(this);
+    this.onLikeBagClick = this.onLikeBagClick.bind(this);
   }
 
   componentDidMount() {
@@ -68,7 +60,6 @@ class SimilarProducts extends React.Component {
   onClickRight() {
     const { products, index } = this.state;
     const newIndex = index + 4;
-    // console.log('here');
     if (index <= 4) {
       this.setState({
         productsInView: products.slice(newIndex, newIndex + 4),
@@ -116,12 +107,19 @@ class SimilarProducts extends React.Component {
     });
   }
 
+  onLikeBagClick(name) {
+    this.setState({
+      clickedName: name,
+    });
+  }
+
   render() {
     const {
-      productsInView, products, index, showLeftArrow, showRightArrow,
+      products, index, showLeftArrow, showRightArrow, clickedName,
     } = this.state;
     return (
       <MainContainer>
+        <Toast name={clickedName} />
         <h1>Similar Products</h1>
         <SimilarProductsContainer onMouseEnter={this.onHover} onMouseLeave={this.onLeave}>
           {showLeftArrow
@@ -133,7 +131,7 @@ class SimilarProducts extends React.Component {
                   position: 'relative',
                   top: '50%',
                   transform: 'scale(1.5)',
-                  visibility: this.state.showLeftArrow ? 'visible' : 'hidden',
+                  visibility: showLeftArrow ? 'visible' : 'hidden',
                 }}
               />
             )
@@ -141,6 +139,7 @@ class SimilarProducts extends React.Component {
           <ProductList
             index={index}
             products={products}
+            onLikeBagClick={this.onLikeBagClick}
           />
           {showRightArrow
             ? (
@@ -151,7 +150,7 @@ class SimilarProducts extends React.Component {
                   position: 'relative',
                   top: '50%',
                   transform: 'scale(1.5)',
-                  visibility: this.state.showRightArrow ? 'visible' : 'hidden',
+                  visibility: showRightArrow ? 'visible' : 'hidden',
                 }}
               />
             )
@@ -164,9 +163,3 @@ class SimilarProducts extends React.Component {
 }
 
 export default SimilarProducts;
-
-// checkVisbility () {
-//   if (this.state.showLeftArrow) {
-
-//   }
-// }
