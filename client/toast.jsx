@@ -1,11 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ToastContainer = styled.div`
+const ParentToastContainer = styled.div`
   position: absolute;
-  display: flex,
-  top: 12px;
-  right: 12px;
+  top: 10px;
+  left: 1000px;
+`;
+
+const ToastContainer = styled.div`
+  display: flex;
   transition: transform .6s ease-in-out;
   animation: toast-in-right .7s;
 `;
@@ -14,19 +17,41 @@ const ToastNotification = styled.div`
 `;
 
 const ToastExit = styled.button`
-`
+`;
 
-const Toast = (props) => {
-  return (
-    <ToastContainer>
-      <ToastNotification>
-        {props.name} is adding to the Shopping Cart.
-      </ToastNotification>
-      <ToastExit>
-        VIEW
-      </ToastExit>
-    </ToastContainer>
-  )
+class Toast extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      toast: false,
+      name: '',
+    };
+    this.onBagLikeClick = this.onBagLikeClick.bind(this);
+  }
+
+  onBagLikeClick(name) {
+    console.log(name);
+  }
+
+  render() {
+    const { name } = this.props;
+    return (
+      <ParentToastContainer>
+        {name && (
+        <ToastContainer>
+          <ToastNotification>
+            {name}
+            {' '}
+            is adding to the Shopping Cart.
+          </ToastNotification>
+          <ToastExit>
+            VIEW
+          </ToastExit>
+        </ToastContainer>
+        )}
+      </ParentToastContainer>
+    );
+  }
 }
 
 export default Toast;

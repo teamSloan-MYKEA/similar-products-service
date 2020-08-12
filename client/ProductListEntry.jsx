@@ -1,9 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as heartRegular } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as heartSolid } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
-import Toast from './Toast';
 
 const Product = styled.div`
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
@@ -80,10 +80,13 @@ class ProductListEntry extends React.Component {
   }
 
   onHeartClick() {
-    // console.log('clicked');
+    const { like } = this.state;
+    const { onLikeBagClick, product } = this.props;
+    const { name } = product;
     this.setState({
-      like: !this.state.like,
+      like: !like,
     });
+    onLikeBagClick(name);
   }
 
   render() {
@@ -93,11 +96,11 @@ class ProductListEntry extends React.Component {
     const { showHeart, showBag, like } = this.state;
     return (
       <Product >
-        {like && <Toast name={name} />}
+        {/* {like && <Toast name={name} />} */}
         {showHeart
           ? (
             <FontAwesomeIcon
-              icon={this.state.like ? heartSolid : heartRegular}
+              icon={like ? heartSolid : heartRegular}
               onClick={this.onHeartClick}
               style={HeartStyle}
             />
@@ -121,5 +124,15 @@ class ProductListEntry extends React.Component {
     );
   }
 }
+
+ProductListEntry.propTypes = {
+  product.photo1: PropTypes.string.isRequired,
+  product.photo2: PropTypes.string.isRequired,
+  product.name: PropTypes.string.isRequired,
+  product.description: PropTypes.string.isRequired,
+  product.price: PropTypes.number.isRequired,
+  product.onLikeBagClick: PropTypes.func.isRequired,
+
+};
 
 export default ProductListEntry;
