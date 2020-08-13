@@ -45,16 +45,17 @@ class ProductListEntry extends React.Component {
     } = this.props.product;
     const { showHeart, like } = this.state;
     return (
-      <MainProductContainer className="main-container" onMouseEnter={this.onImageHover} onMouseLeave={this.onImageHover}>
+      <MainProductContainer
+        onMouseEnter={this.onImageHover} onMouseLeave={this.onImageHover}>
         <HeartContainer like={like} >
           {showHeart
-              && (
-              <FontAwesomeIcon className="heart"
+            && (
+              <FontAwesomeIcon
                 icon={like ? heartSolid : heartRegular}
                 onClick={this.onHeartClick}
                 style={HeartStyle}
               />
-              )}
+            )}
         </HeartContainer>
         <Product>
           <Image
