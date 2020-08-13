@@ -50,15 +50,18 @@ const Image = styled.img`
   width: 20vw;
 `;
 
+const HeartContainer = styled.div`
+  height: 20px;
+  opacity: ${(props) => ((props.like) ? '.8' : '.5')};
+`;
+
 const HeartStyle = {
-  display: 'block',
-  transform: 'scale(2)',
-  height: '40px',
+  position: 'relative',
+  left: '20vw',
+  transform: 'scale(1.2)',
+  height: '20px',
 };
 
-const EmptyDiv = styled.div`
-  height: 40px;
-`;
 
 class ProductListEntry extends React.Component {
   constructor(props) {
@@ -101,20 +104,16 @@ class ProductListEntry extends React.Component {
     const { showHeart, like } = this.state;
     return (
       <MainProductContainer onMouseEnter={this.onImageHover} onMouseLeave={this.onImageHover}>
-        {showHeart
-          ? (
-            <FontAwesomeIcon
-              icon={like ? heartSolid : heartRegular}
-              onClick={this.onHeartClick}
-              style={{
-              justifyContent: 'right',
-              alignItems: 'right',
-              transform: 'scale(1.2)',
-              height: '40px',
-              }}
-            />
-          )
-          : <EmptyDiv />}
+        <HeartContainer like={like} >
+          {showHeart
+              && (
+              <FontAwesomeIcon
+                icon={like ? heartSolid : heartRegular}
+                onClick={this.onHeartClick}
+                style={HeartStyle}
+              />
+              )}
+        </HeartContainer>
         <Product>
           <Image
             src={photo1}
