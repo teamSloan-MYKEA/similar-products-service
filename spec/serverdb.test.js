@@ -1,4 +1,8 @@
+/**
+ * @jest-environment node
+ */
 const mongoose = require('mongoose');
+const axios = require('axios');
 const seed = require('../database/dataGenerator.js');
 const data = require('../database/data.js');
 const db = require('../database/db.js');
@@ -13,7 +17,7 @@ describe('Random data generator test', () => {
     const result2 = seed.createRandomObj(null, data.names, data.descriptions, data.prices, data.photos, db.SimilarProducts);
     expect(result1).not.toBe(result2);
   });
-})
+});
 
 describe('Similar Products model test', () => {
   beforeAll(async () => {
@@ -44,5 +48,16 @@ describe('Similar Products model test', () => {
         expect(actual).toEqual(expected);
       });
   });
+});
 
+describe('returns accurate data from API request', () => {
+  it('returns data from specific id', (done) => {
+    axios.get('http://localhost:3001/photos/1').then((results) => {
+      expect(results).toBeDefined();
+      expect(results.data.length).toEqual(12);
+      expect(results.data[0].id).toEqual(1);
+      done();
+    })
+      .catch(done.fail);
+  });
 });
