@@ -3,62 +3,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as heartRegular } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as heartSolid } from '@fortawesome/free-solid-svg-icons';
-import styled from 'styled-components';
-
-const MainProductContainer = styled.div`
-
-`;
-
-const Product = styled.div`
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&display=swap');
-  font-family: 'Noto Sans';
-  font-weight: regular;
-  font-size: 12px;
-  width: 20vw;
-  position:relative;
-  margin: 1vw;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-`;
-const ProductName = styled.div`
-  line-height: 1.42857;
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 14px;
-`;
-const ProductDescription = styled.div`
-  font-size: 14px;
-`;
-const ProductPrice = styled.div`
-  font-size: 22px;
-  font-weight: 800;
-  position: relative;
-  margin-left: 10px;
-`;
-const PriceDetails = styled.div`
-  display: inline;
-  position: absolute;
-  font-size: 12px;
-  top: 4px;
-`;
-const MoreOptions = styled.div`
-`;
-
-const Image = styled.img`
-  width: 20vw;
-`;
-
-const HeartStyle = {
-  display: 'block',
-  transform: 'scale(2)',
-  height: '40px',
-};
-
-const EmptyDiv = styled.div`
-  height: 40px;
-`;
+import { MainProductContainer, Product, ProductName, ProductDescription, ProductPrice, PriceDetails, MoreOptions, Image, HeartContainer, HeartStyle } from './styles/ProductListEntryStyles';
 
 class ProductListEntry extends React.Component {
   constructor(props) {
@@ -73,21 +18,18 @@ class ProductListEntry extends React.Component {
 
   onImageHover() {
     const { like, showHeart } = this.state;
-    // if (like) {
+    if (like) {
+      this.setState({
+        showHeart: true,
+      });
+    } else {
       this.setState({
         showHeart: !showHeart,
-      // });
-    })
-    // else {
-    //   this.setState({
-    //     showHeart: !showHeart,
-    //     showBag: !showBag,
-    //   });
-    // }
+      });
+    }
   }
 
   onHeartClick() {
-    console.log('clicked')
     const { like } = this.state;
     const { onLikeBagClick, product } = this.props;
     const { name } = product;
@@ -103,22 +45,18 @@ class ProductListEntry extends React.Component {
     } = this.props.product;
     const { showHeart, like } = this.state;
     return (
-      <MainProductContainer onMouseEnter={this.onImageHover} onMouseLeave={this.onImageHover}>
-        {showHeart
-          ? (
-            <FontAwesomeIcon
-              icon={like ? heartSolid : heartRegular}
-              onClick={this.onHeartClick}
-              style={{
-              justifyContent: 'right',
-              alignItems: 'right',
-              transform: 'scale(1.2)',
-              height: '40px',
-              visibility: showHeart ? 'visible' : 'hidden',
-              transition: 'visibility 3s linear'}}
-            />
-          )
-          : <EmptyDiv />}
+      <MainProductContainer
+        onMouseEnter={this.onImageHover} onMouseLeave={this.onImageHover}>
+        <HeartContainer like={like} >
+          {showHeart
+            && (
+              <FontAwesomeIcon
+                icon={like ? heartSolid : heartRegular}
+                onClick={this.onHeartClick}
+                style={HeartStyle}
+              />
+            )}
+        </HeartContainer>
         <Product>
           <Image
             src={photo1}
