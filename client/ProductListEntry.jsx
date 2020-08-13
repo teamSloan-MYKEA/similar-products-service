@@ -73,21 +73,18 @@ class ProductListEntry extends React.Component {
 
   onImageHover() {
     const { like, showHeart } = this.state;
-    // if (like) {
+    if (like) {
+      this.setState({
+        showHeart: true,
+      });
+    } else {
       this.setState({
         showHeart: !showHeart,
-      // });
-    })
-    // else {
-    //   this.setState({
-    //     showHeart: !showHeart,
-    //     showBag: !showBag,
-    //   });
-    // }
+      });
+    }
   }
 
   onHeartClick() {
-    console.log('clicked')
     const { like } = this.state;
     const { onLikeBagClick, product } = this.props;
     const { name } = product;
@@ -114,8 +111,7 @@ class ProductListEntry extends React.Component {
               alignItems: 'right',
               transform: 'scale(1.2)',
               height: '40px',
-              visibility: showHeart ? 'visible' : 'hidden',
-              transition: 'visibility 3s linear'}}
+              }}
             />
           )
           : <EmptyDiv />}
