@@ -40,6 +40,8 @@
     "@babel/preset-react": "^7.10.4",
     "@testing-library/dom": "^7.22.1",
     "babel-loader": "^8.1.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.3",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor.git",
     "jest-dom": "^4.0.0",
     "webpack": "^4.44.1",
@@ -55,8 +57,5 @@
   "bugs": {
     "url": "https://github.com/hrr47-fec-omalley/similar-products-service/issues"
   },
-  "homepage": "https://github.com/hrr47-fec-omalley/similar-products-service#readme",
-  "jest": {
-    "testEnvironment": "node"
-  }
+  "homepage": "https://github.com/hrr47-fec-omalley/similar-products-service#readme"
 }

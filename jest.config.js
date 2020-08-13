@@ -3,7 +3,7 @@ module.export = {
   transform: {
     '\\.(js|jsx)?$': 'babel-jest',
   },
-  // testEnvironment: "node",
+  // testEnvironment: "js-dom",
   testMatch: ['<rootDir>/spec/**/>(*.)test.{js, jsx}'], // finds test
   moduleFileExtensions: ['js', 'jsx', 'json', 'node'],
   setupFilesAfterEnv: [

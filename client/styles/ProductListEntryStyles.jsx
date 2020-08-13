@@ -46,7 +46,7 @@ const Image = styled.img`
 
 const HeartContainer = styled.div`
   height: 20px;
-  opacity: ${(props) => ((props.like) ? '.8' : '.5')};
+  opacity: ${(props) => (props.like ? '.8' : '.5')};
 `;
 
 const HeartStyle = {
