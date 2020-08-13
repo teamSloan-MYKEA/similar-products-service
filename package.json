@@ -17,7 +17,10 @@
     "@fortawesome/free-regular-svg-icons": "^5.14.0",
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
     "@fortawesome/react-fontawesome": "^0.1.11",
+    "@testing-library/jest-dom": "^5.11.3",
+    "@testing-library/react": "^10.4.8",
     "axios": "^0.19.2",
+    "babel-jest": "^26.3.0",
     "eslint": "^7.6.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-plugin-import": "^2.22.0",
@@ -35,8 +38,10 @@
     "@babel/core": "^7.11.1",
     "@babel/preset-env": "^7.11.0",
     "@babel/preset-react": "^7.10.4",
+    "@testing-library/dom": "^7.22.1",
     "babel-loader": "^8.1.0",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor.git",
+    "jest-dom": "^4.0.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
   },
@@ -50,5 +55,8 @@
   "bugs": {
     "url": "https://github.com/hrr47-fec-omalley/similar-products-service/issues"
   },
-  "homepage": "https://github.com/hrr47-fec-omalley/similar-products-service#readme"
+  "homepage": "https://github.com/hrr47-fec-omalley/similar-products-service#readme",
+  "jest": {
+    "testEnvironment": "node"
+  }
 }

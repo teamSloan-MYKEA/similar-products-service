@@ -42,10 +42,11 @@ class SimilarProducts extends React.Component {
     this.onLeave = this.onLeave.bind(this);
     this.onHover = this.onHover.bind(this);
     this.onLikeBagClick = this.onLikeBagClick.bind(this);
+    this.getData = this.getData.bind(this);
   }
 
-  componentDidMount() {
-    axios.get('http://localhost:3001/photos/2')
+  getData() {
+    axios.get('http://localhost:3001/photos/1')
       .then((similarProducts) => {
         this.setState({
           products: similarProducts.data,
@@ -56,6 +57,12 @@ class SimilarProducts extends React.Component {
         throw err;
       });
   }
+
+  componentDidMount() {
+    this.getData();
+  }
+
+
 
   onClickRight() {
     const { products, index } = this.state;
@@ -75,7 +82,6 @@ class SimilarProducts extends React.Component {
       this.setState({
         productsInView: products.slice(newIndex, newIndex + 4),
         index: newIndex,
-        showLeftArrow: true,
       });
     }
   }
@@ -122,6 +128,7 @@ class SimilarProducts extends React.Component {
         <Toast name={clickedName} />
         <h1>Similar Products</h1>
         <SimilarProductsContainer onMouseEnter={this.onHover} onMouseLeave={this.onLeave}>
+
           {showLeftArrow
             ? (
               <FontAwesomeIcon
@@ -131,7 +138,7 @@ class SimilarProducts extends React.Component {
                   position: 'relative',
                   top: '50%',
                   transform: 'scale(1.5)',
-                  visibility: showLeftArrow ? 'visible' : 'hidden',
+                  visibility: (index >= 4) ? 'visible' : 'hidden',
                 }}
               />
             )
@@ -150,7 +157,7 @@ class SimilarProducts extends React.Component {
                   position: 'relative',
                   top: '50%',
                   transform: 'scale(1.5)',
-                  visibility: showRightArrow ? 'visible' : 'hidden',
+                  visibility: (index + 4 <= products.length) ? 'visible' : 'hidden',
                 }}
               />
             )

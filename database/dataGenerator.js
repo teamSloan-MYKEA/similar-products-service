@@ -3,10 +3,10 @@ const db = require('./db.js');
 
 const randomNumber = (array) => Math.floor(Math.random() * array.length);
 
-const createRandomObj = (index, names, descriptions, prices, photos) => {
+const createRandomObj = (index, names, descriptions, prices, photos, Schema) => {
   const randomPhotoIndex = randomNumber(photos);
   const { AWS } = data;
-  const newSimilarProduct = new db.SimilarProducts({
+  const newSimilarProduct = new Schema({
     id: index,
     name: names[randomNumber(names)],
     description: descriptions[randomNumber(descriptions)],
@@ -25,7 +25,7 @@ const generateData = () => {
       counter += 1;
     }
     // eslint-disable-next-line max-len
-    const newProduct = createRandomObj(counter, data.names, data.descriptions, data.prices, data.photos);
+    const newProduct = createRandomObj(counter, data.names, data.descriptions, data.prices, data.photos, db.SimilarProducts);
     newProduct.save((err) => {
       if (err) {
         throw err;
