@@ -44,7 +44,7 @@ class Toast extends React.Component {
       <ParentToastContainer>
         {name && (
           <ToastContainer>
-            <ToastNotification>
+            <ToastNotification data-testid="toast-name">
               {name}
               {' '}
             was saved to the Shopping Cart.
