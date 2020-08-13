@@ -1,24 +1,38 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const ToastAnimation = keyframes`
+  from {
+    top: 7vh;
+    left: 100vw;
+  }
+  to {
+    top: 7vh;
+    left: 82vw;
+  }
+`;
 
 const ParentToastContainer = styled.div`
   position: absolute;
-  top: 10px;
-  left: 1000px;
+  top: 7vh;
+  left: 82vw;
+  z-index: 1;
+  animation: ${ToastAnimation} 1s;
+}
 `;
 
 const ToastContainer = styled.div`
   display: flex;
-  transition: transform .6s ease-in-out;
-  animation: toast-in-right .7s;
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+  font-family: 'Noto Sans';
 `;
 
 const ToastNotification = styled.div`
   color: white;
   background: black;
   font-size: 10px;
-  padding: 15px 7px 15px 7px;
-  width: 120px;
+  padding: 15px 7px 15px 15px;
+  width: 230px;
 `;
 
 const ToastExit = styled.button`
@@ -26,6 +40,7 @@ const ToastExit = styled.button`
   background: black;
   font-size: 10px;
   border: 0;
+  padding: 15px 15px 15px 7px;
 `;
 
 class Toast extends React.Component {
@@ -44,14 +59,14 @@ class Toast extends React.Component {
       <ParentToastContainer>
         {name && (
           <ToastContainer>
-            <ToastNotification>
-              {name}
+            <ToastNotification data-testid="toast-name">
+              <strong>{name}</strong>
               {' '}
-            was saved to the Shopping Cart.
-          </ToastNotification>
+              was saved to the Shopping list.
+            </ToastNotification>
             <ToastExit>
-              VIEW
-          </ToastExit>
+              <strong>View</strong>
+            </ToastExit>
           </ToastContainer>
         )}
       </ParentToastContainer>
