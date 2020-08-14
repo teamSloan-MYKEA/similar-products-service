@@ -1,19 +1,14 @@
+/* eslint-disable no-return-assign */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as heartRegular } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as heartSolid } from '@fortawesome/free-solid-svg-icons';
-import { MainProductContainer, Product, ProductName, ProductDescription, ProductPrice, PriceDetails, MoreOptions, Image, HeartContainer, HeartStyle } from './styles/ProductListEntryStyles';
 import styled from 'styled-components';
+import {
+  MainProductContainer, Product, ProductName, ProductDescription, ProductPrice, PriceDetails, MoreOptions, Image, HeartContainer, HeartStyle, BagContainer
+} from './styles/ProductListEntryStyles';
 import Bag from './Bag';
-
-const BagContainer = styled.div`
-  width: 100px;
-  height: 100px;
-  position: absolute;
-  top: 82%;
-  left: 75%;
-`;
 
 class ProductListEntry extends React.Component {
   constructor(props) {
@@ -30,7 +25,9 @@ class ProductListEntry extends React.Component {
   }
 
   onImageHover() {
-    const { like, showHeart, showBag, addToBag } = this.state;
+    const {
+      like, showHeart, showBag, addToBag,
+    } = this.state;
     if (like) {
       this.setState({
         showHeart: true,
@@ -62,15 +59,15 @@ class ProductListEntry extends React.Component {
     const { onLikeBagClick } = this.props;
     const { addToBag } = this.state;
     this.setState({
-      addToBag: true
+      addToBag: true,
     });
     setTimeout(() => {
       this.setState({
         showBag: false,
-        addToBag: false
-      })
-    }, 1000)
-    onLikeBagClick(name)
+        addToBag: false,
+      });
+    }, 2000);
+    onLikeBagClick(name);
   }
 
   render() {
@@ -80,8 +77,10 @@ class ProductListEntry extends React.Component {
     const { showHeart, showBag, like } = this.state;
     return (
       <MainProductContainer
-        onMouseEnter={this.onImageHover} onMouseLeave={this.onImageHover}>
-        <HeartContainer like={like} >
+        onMouseEnter={this.onImageHover}
+        onMouseLeave={this.onImageHover}
+      >
+        <HeartContainer like={like}>
           {showHeart
             && (
               <FontAwesomeIcon
@@ -107,7 +106,7 @@ class ProductListEntry extends React.Component {
           <div className="product-stars">stars</div>
           <MoreOptions>more options</MoreOptions>
           <BagContainer onClick={this.onBagClick}>
-          {showBag && <Bag />}
+            {showBag && <Bag />}
           </BagContainer>
         </Product>
       </MainProductContainer>

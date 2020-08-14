@@ -166,7 +166,6 @@ class SimilarProducts extends React.Component {
 
         </SimilarProductsContainer>
         <div className="scrollbar">Scrollbar</div>
-        <Bag />
       </MainContainer>
     );
   }
