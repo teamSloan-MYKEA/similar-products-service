@@ -4,6 +4,7 @@ import { faChevronCircleRight as rightArrow, faChevronCircleLeft as leftArrow } 
 import styled from 'styled-components';
 import ProductList from './ProductList';
 import Toast from './Toast';
+import Bag from './Bag';
 
 const axios = require('axios');
 
@@ -162,8 +163,10 @@ class SimilarProducts extends React.Component {
               />
             )
             : <EmptyDiv />}
+
         </SimilarProductsContainer>
         <div className="scrollbar">Scrollbar</div>
+        <Bag />
       </MainContainer>
     );
   }
