@@ -22,6 +22,7 @@ class ProductListEntry extends React.Component {
       showHeart: false,
       showBag: false,
       like: false,
+      addToBag: false,
     };
     this.onImageHover = this.onImageHover.bind(this);
     this.onHeartClick = this.onHeartClick.bind(this);
@@ -29,10 +30,14 @@ class ProductListEntry extends React.Component {
   }
 
   onImageHover() {
-    const { like, showHeart, showBag } = this.state;
+    const { like, showHeart, showBag, addToBag } = this.state;
     if (like) {
       this.setState({
         showHeart: true,
+      });
+    } if (addToBag) {
+      this.setState({
+        showBag: true,
       });
     } else {
       this.setState({
@@ -53,10 +58,19 @@ class ProductListEntry extends React.Component {
   }
 
   onBagClick() {
-    console.log('clicked');
     const { name } = this.props.product;
     const { onLikeBagClick } = this.props;
-    onLikeBagClick(name);
+    const { addToBag } = this.state;
+    this.setState({
+      addToBag: true
+    });
+    setTimeout(() => {
+      this.setState({
+        showBag: false,
+        addToBag: false
+      })
+    }, 1000)
+    onLikeBagClick(name)
   }
 
   render() {
