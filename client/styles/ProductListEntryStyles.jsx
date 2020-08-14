@@ -56,6 +56,14 @@ const HeartStyle = {
   height: '20px',
 };
 
+const BagContainer = styled.div`
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 82%;
+  left: 75%;
+`;
+
 export {
   MainProductContainer,
   Product,
@@ -67,4 +75,5 @@ export {
   Image,
   HeartContainer,
   HeartStyle,
+  BagContainer,
 };
