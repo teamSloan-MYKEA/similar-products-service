@@ -3,12 +3,10 @@ import styled, { keyframes } from 'styled-components';
 
 const ToastAnimation = keyframes`
   from {
-    top: 7vh;
-    left: 100vw;
+    left: 100%;
   }
   to {
-    top: 7vh;
-    left: 82vw;
+    left: 82%;
   }
 `;
 
@@ -17,7 +15,7 @@ const ParentToastContainer = styled.div`
   top: 7vh;
   left: 82vw;
   z-index: 1;
-  animation: ${ToastAnimation} 1s;
+  animation: ${ToastAnimation} 1s linear;
 }
 `;
 

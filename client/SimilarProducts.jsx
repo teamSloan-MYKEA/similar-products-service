@@ -47,8 +47,8 @@ class SimilarProducts extends React.Component {
     this.getData = this.getData.bind(this);
   }
 
-  getData() {
-    axios.get('http://localhost:3001/photos/1')
+  getData(endpoint) {
+    axios.get(`photos${window.location.pathname}`)
       .then((similarProducts) => {
         this.setState({
           products: similarProducts.data,
@@ -116,18 +116,28 @@ class SimilarProducts extends React.Component {
   }
 
   onLikeBagClick(name, addTo) {
-    if (addTo === 'like') {
+    return Promise.resolve()
+    .then(() => {
+      if (addTo === 'like') {
+        this.setState({
+          clickedName: name,
+          addTo: 'was saved to the Shopping list.'
+        });
+      } if (addTo === 'bag') {
+        this.setState({
+          clickedName: name,
+          addTo: 'was added to your shopping bag.'
+        });
+      }
+    })
+    .then(setTimeout(()=>{
+      // console.log('time out')
       this.setState({
-        clickedName: name,
-        addTo: 'was saved to the Shopping list.'
-      });
-    } if (addTo === 'bag') {
-      this.setState({
-        clickedName: name,
-        addTo: 'was added to your shopping bag.'
-      });
-    }
-  }
+        clickedName: '',
+      })
+  }, 5000))
+
+}
 
   render() {
     const {

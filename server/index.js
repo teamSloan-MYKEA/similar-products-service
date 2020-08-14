@@ -4,9 +4,10 @@ const express = require('express');
 const app = express();
 const db = require('../database/db.js');
 
-app.use('/', express.static('dist'));
+// app.use('/', express.static('dist'));
+app.use('/:id', express.static('dist'));
 
-app.get('/photos/:id', (req, res) => {
+app.get('/:id/photos/:id', (req, res) => {
   const productNumber = req.params.id;
   db.SimilarProducts.find({ id: productNumber })
     .then((similarProducts) => {
