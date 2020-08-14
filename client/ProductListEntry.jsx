@@ -4,7 +4,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as heartRegular } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as heartSolid } from '@fortawesome/free-solid-svg-icons';
 import { MainProductContainer, Product, ProductName, ProductDescription, ProductPrice, PriceDetails, MoreOptions, Image, HeartContainer, HeartStyle } from './styles/ProductListEntryStyles';
+import styled from 'styled-components';
 import Bag from './Bag';
+
+const BagContainer = styled.div`
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 82%;
+  left: 75%;
+`;
 
 class ProductListEntry extends React.Component {
   constructor(props) {
@@ -42,6 +51,10 @@ class ProductListEntry extends React.Component {
     onLikeBagClick(name);
   }
 
+  // onBagClick() {
+  //   const {  }
+  // }
+
   render() {
     const {
       photo1, photo2, name, description, price,
@@ -75,7 +88,9 @@ class ProductListEntry extends React.Component {
           </ProductPrice>
           <div className="product-stars">stars</div>
           <MoreOptions>more options</MoreOptions>
+          <BagContainer>
           {showBag && <Bag />}
+          </BagContainer>
         </Product>
       </MainProductContainer>
     );

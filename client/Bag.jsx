@@ -24,22 +24,30 @@ const CheckAnimation = keyframes`
   }
 `;
 
+const InnerBagContainer = styled.div`
+  position: absolute;
+`;
+const BagContainer = styled.div`
+  width: 100%;
+  position: relative;
+`;
+
 const BlueDot = styled.div`
   position: absolute;
-  top: 595px;
-  left: 7px;
-  width: 89px;
-  height: 89px;
+  top: 17%;
+  left: 7%;
+  width: 40px;
+  height: 40px;
   background: rgb(0, 88, 163);
   border-radius: 50%;
   z-index: 0;
 `;
 const OtherBlueDot = styled.div`
   position: absolute;
-  top: 595px;
-  left: 7px;
-  width: 89px;
-  height: 89px;
+  top: 17%;
+  left: 7%;
+  width: 40px;
+  height: 40px;
   background: rgb(0, 88, 163);
   border-radius: 50%;
   z-index: 1;
@@ -47,12 +55,11 @@ const OtherBlueDot = styled.div`
 
 const WhiteDot = styled.div`
   position: relative;
-  width: 15px;
-  height: 15px;
+  width: 6px;
+  height: 6px;
   z-index: 1;
   background: white;
   border-radius: 50%;
-  border: 1px solid black;
   top: 30%;
   left: 43%;
   animation: ${BallAnimation} .3s linear;
@@ -73,7 +80,8 @@ const CheckMark = styled.img`
 
 const ShoppingBag = styled.img`
   z-index: 1;
-  position: relative
+  position: relative;
+  max-width: 40%;
 `;
 
 // on bag click the shopping bag icon z-index turns -1
@@ -107,8 +115,9 @@ class Bag extends React.Component {
 
   render() {
     return (
-      <div>
-        <ShoppingBag src={shoppingBag} onClick={this.onClickBag} />
+      <BagContainer>
+        <InnerBagContainer>
+        <ShoppingBag src={shoppingBag} style={{maxWidth: '46px'}} onClick={this.onClickBag} />
         <BlueDot>
           {this.state.showWhiteDot && <WhiteDot />}
         </BlueDot>
@@ -117,7 +126,8 @@ class Bag extends React.Component {
           <CheckMark src={checkMark} />
         </OtherBlueDot>
         )}
-      </div>
+        </InnerBagContainer>
+      </BagContainer>
     );
   }
 }
