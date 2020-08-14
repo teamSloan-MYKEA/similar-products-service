@@ -25,6 +25,7 @@ class ProductListEntry extends React.Component {
     };
     this.onImageHover = this.onImageHover.bind(this);
     this.onHeartClick = this.onHeartClick.bind(this);
+    this.onBagClick = this.onBagClick.bind(this);
   }
 
   onImageHover() {
@@ -51,9 +52,12 @@ class ProductListEntry extends React.Component {
     onLikeBagClick(name);
   }
 
-  // onBagClick() {
-  //   const {  }
-  // }
+  onBagClick() {
+    console.log('clicked');
+    const { name } = this.props.product;
+    const { onLikeBagClick } = this.props;
+    onLikeBagClick(name);
+  }
 
   render() {
     const {
@@ -88,7 +92,7 @@ class ProductListEntry extends React.Component {
           </ProductPrice>
           <div className="product-stars">stars</div>
           <MoreOptions>more options</MoreOptions>
-          <BagContainer>
+          <BagContainer onClick={this.onBagClick}>
           {showBag && <Bag />}
           </BagContainer>
         </Product>
