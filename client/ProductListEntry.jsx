@@ -4,12 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as heartRegular } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as heartSolid } from '@fortawesome/free-solid-svg-icons';
 import { MainProductContainer, Product, ProductName, ProductDescription, ProductPrice, PriceDetails, MoreOptions, Image, HeartContainer, HeartStyle } from './styles/ProductListEntryStyles';
+import Bag from './Bag';
 
 class ProductListEntry extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       showHeart: false,
+      showBag: false,
       like: false,
     };
     this.onImageHover = this.onImageHover.bind(this);
@@ -17,7 +19,7 @@ class ProductListEntry extends React.Component {
   }
 
   onImageHover() {
-    const { like, showHeart } = this.state;
+    const { like, showHeart, showBag } = this.state;
     if (like) {
       this.setState({
         showHeart: true,
@@ -25,6 +27,7 @@ class ProductListEntry extends React.Component {
     } else {
       this.setState({
         showHeart: !showHeart,
+        showBag: !showBag,
       });
     }
   }
@@ -43,7 +46,7 @@ class ProductListEntry extends React.Component {
     const {
       photo1, photo2, name, description, price,
     } = this.props.product;
-    const { showHeart, like } = this.state;
+    const { showHeart, showBag, like } = this.state;
     return (
       <MainProductContainer
         onMouseEnter={this.onImageHover} onMouseLeave={this.onImageHover}>
@@ -72,6 +75,7 @@ class ProductListEntry extends React.Component {
           </ProductPrice>
           <div className="product-stars">stars</div>
           <MoreOptions>more options</MoreOptions>
+          {showBag && <Bag />}
         </Product>
       </MainProductContainer>
     );
