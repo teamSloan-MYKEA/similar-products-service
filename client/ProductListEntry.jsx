@@ -51,7 +51,7 @@ class ProductListEntry extends React.Component {
     this.setState({
       like: !like,
     });
-    onLikeBagClick(name);
+    onLikeBagClick(name, 'like');
   }
 
   onBagClick() {
@@ -67,7 +67,7 @@ class ProductListEntry extends React.Component {
         addToBag: false,
       });
     }, 2000);
-    onLikeBagClick(name);
+    onLikeBagClick(name, 'bag');
   }
 
   render() {

@@ -36,6 +36,7 @@ class SimilarProducts extends React.Component {
       showRightArrow: false,
       showLeftArrow: false,
       clickedName: '',
+      addTo: '',
     };
 
     this.onClickRight = this.onClickRight.bind(this);
@@ -114,19 +115,27 @@ class SimilarProducts extends React.Component {
     });
   }
 
-  onLikeBagClick(name) {
-    this.setState({
-      clickedName: name,
-    });
+  onLikeBagClick(name, addTo) {
+    if (addTo === 'like') {
+      this.setState({
+        clickedName: name,
+        addTo: 'was saved to the Shopping list.'
+      });
+    } if (addTo === 'bag') {
+      this.setState({
+        clickedName: name,
+        addTo: 'was added to your shopping bag.'
+      });
+    }
   }
 
   render() {
     const {
-      products, index, showLeftArrow, showRightArrow, clickedName,
+      products, index, showLeftArrow, showRightArrow, clickedName, addTo,
     } = this.state;
     return (
       <MainContainer>
-        <Toast name={clickedName} />
+        <Toast name={clickedName} addTo={addTo} />
         <h1>Similar Products</h1>
         <SimilarProductsContainer onMouseEnter={this.onHover} onMouseLeave={this.onLeave}>
 
