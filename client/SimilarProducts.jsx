@@ -22,7 +22,10 @@ class SimilarProducts extends React.Component {
       showArrows: false,
       clickedName: '',
       addTo: '',
+      showToast: false,
     };
+
+    this.timeOut = null;
 
     this.onClickRight = this.onClickRight.bind(this);
     this.onClickLeft = this.onClickLeft.bind(this);
@@ -30,6 +33,7 @@ class SimilarProducts extends React.Component {
     this.onLikeBagClick = this.onLikeBagClick.bind(this);
     this.getData = this.getData.bind(this);
     this.getDummyData = this.getDummyData.bind(this);
+    // this.mapOverObjects = this.mapOverObjects.bind(this);
   }
 
   componentDidMount() {
@@ -64,27 +68,26 @@ class SimilarProducts extends React.Component {
   }
 
   onLikeBagClick(name, addTo) {
-    // maybe this takes a callback in order to complete
-    // const counter = 0;
-    // if (somestate) {
-    //   setTime 5001
-    // }
-    if (addTo === 'like') {
+    const { showToast } = this.state;
+    if (showToast) {
+      setTimeout(() => {
+        this.onLikeBagClick(name, addTo);
+      }, 5500);
+    } else {
       this.setState({
         clickedName: name,
-        addTo: 'was saved to the Shopping list.',
-      });
-    } if (addTo === 'bag') {
-      this.setState({
-        clickedName: name,
-        addTo: 'was added to your shopping bag.',
+        addTo,
+        showToast: true,
+      }, () => {
+        this.timeOut = setTimeout(() => {
+          this.setState({
+            clickedName: '',
+            addTo: '',
+            showToast: false,
+          });
+        }, 5000);
       });
     }
-    setTimeout(() => {
-      this.setState({
-        clickedName: '',
-      });
-    }, 5000);
   }
 
   getData() {
@@ -112,11 +115,11 @@ class SimilarProducts extends React.Component {
 
   render() {
     const {
-      products, index, clickedName, addTo, showArrows,
+      products, index, clickedName, addTo, showArrows, showToast,
     } = this.state;
     return (
       <MainContainer>
-        <Toast name={clickedName} addTo={addTo} />
+        <Toast name={clickedName} addTo={addTo} showToast={showToast} />
         <TitleContainer>
           <SimilarProductsTitle>
             Similar products
