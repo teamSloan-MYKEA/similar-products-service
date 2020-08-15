@@ -33,7 +33,6 @@ class SimilarProducts extends React.Component {
     this.onLikeBagClick = this.onLikeBagClick.bind(this);
     this.getData = this.getData.bind(this);
     this.getDummyData = this.getDummyData.bind(this);
-    // this.mapOverObjects = this.mapOverObjects.bind(this);
   }
 
   componentDidMount() {
@@ -72,7 +71,7 @@ class SimilarProducts extends React.Component {
     if (showToast) {
       setTimeout(() => {
         this.onLikeBagClick(name, addTo);
-      }, 5500);
+      }, 5100);
     } else {
       this.setState({
         clickedName: name,
@@ -95,7 +94,6 @@ class SimilarProducts extends React.Component {
       .then((similarProducts) => {
         this.setState({
           products: similarProducts.data,
-          // productsInView: similarProducts.data.slice(0, 4),
         });
       })
       .catch((err) => {
@@ -119,7 +117,7 @@ class SimilarProducts extends React.Component {
     } = this.state;
     return (
       <MainContainer>
-        <Toast name={clickedName} addTo={addTo} showToast={showToast} />
+        {showToast && <Toast name={clickedName} addTo={addTo} showToast={showToast} />}
         <TitleContainer>
           <SimilarProductsTitle>
             Similar products
@@ -164,7 +162,6 @@ class SimilarProducts extends React.Component {
             )}
           </ArrowContainer>
         </SimilarProductsContainer>
-        <div className="scrollbar">Scrollbar</div>
       </MainContainer>
     );
   }
