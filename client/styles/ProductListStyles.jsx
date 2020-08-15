@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 const ParentWrapper = styled.div`
@@ -8,8 +7,6 @@ const ParentWrapper = styled.div`
   overflow-x: scroll;
   overflow-y: hidden;
   // background-color: red;
-  // scroll-snap-type: mandatory;
-  scroll-snap-points-x: repeat(10px);
   scroll-snap-type: x mandatory;
   &::-webkit-scrollbar {
     -webkit-appearance: none;
@@ -23,11 +20,9 @@ const ParentWrapper = styled.div`
     width: 2px;
     height: 5px;
     background: rgb(74,74,74);
-    // border:1px solid black;
     border-radius: 10px;
   };
 `;
-
 
 const ProductsContainer = styled.div`
   position: absolute;
@@ -43,4 +38,4 @@ const ProductsContainer = styled.div`
 export {
   ParentWrapper,
   ProductsContainer,
-}
+};

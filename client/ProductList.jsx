@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ProductListEntry from './ProductListEntry';
 import { ParentWrapper, ProductsContainer } from './styles/ProductListStyles';
 
-
 const ProductList = ({ index, products, onLikeBagClick }) => (
   <ParentWrapper>
     <ProductsContainer style={{ transform: `translateX(-${index * 8.35}%)` }}>

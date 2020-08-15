@@ -1,4 +1,3 @@
-import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const ToastAnimation = keyframes`
@@ -47,4 +46,4 @@ export {
   ToastContainer,
   ToastNotification,
   ToastExit,
-}
+};

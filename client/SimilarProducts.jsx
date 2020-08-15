@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronCircleRight as rightArrow, faChevronCircleLeft as leftArrow } from '@fortawesome/free-solid-svg-icons';
@@ -14,7 +15,8 @@ class SimilarProducts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // remember to switch this back to an empty array and change the axios call to get real data. server side routing has to be changed as well.
+    /* remember to switch this back to an empty array and change the axios call
+      to get real data. server side routing has to be changed as well. */
       products: DummyData,
       index: 0,
       showArrows: false,
@@ -79,7 +81,6 @@ class SimilarProducts extends React.Component {
       });
     }
     setTimeout(() => {
-      // counter++;
       this.setState({
         clickedName: '',
       });
