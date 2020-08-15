@@ -1,8 +1,8 @@
 import React from 'react';
 import shoppingBag from './images/shoppingBag.png';
-import checkMark from './images/checkMark.png';
+import checkMark from './images/checkmark.png';
 import {
-  BallAnimation, CheckAnimation, InnerBagContainer, BagContainer, BlueDot, OtherBlueDot, WhiteDot, CheckMark, ShoppingBag,
+  InnerBagContainer, BagContainer, BlueDot, OtherBlueDot, WhiteDot, CheckMark, ShoppingBag,
 } from './styles/BagStyles';
 
 class Bag extends React.Component {
