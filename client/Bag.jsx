@@ -1,8 +1,8 @@
 import React from 'react';
 import shoppingBag from './images/shoppingBag.png';
-import checkMark from './images/checkMark.png';
+import checkMark from './images/checkmark.png';
 import {
-  BallAnimation, CheckAnimation, InnerBagContainer, BagContainer, BlueDot, OtherBlueDot, WhiteDot, CheckMark, ShoppingBag,
+  InnerBagContainer, BagContainer, BlueDot, OtherBlueDot, WhiteDot, CheckMark, ShoppingBag,
 } from './styles/BagStyles';
 
 class Bag extends React.Component {
@@ -29,14 +29,15 @@ class Bag extends React.Component {
   }
 
   render() {
+    const { showWhiteDot, showCheckMark } = this.state;
     return (
       <BagContainer>
         <InnerBagContainer>
           <ShoppingBag src={shoppingBag} style={{ maxWidth: '46px' }} onClick={this.onClickBag} />
           <BlueDot>
-            {this.state.showWhiteDot && <WhiteDot />}
+            {showWhiteDot && <WhiteDot />}
           </BlueDot>
-          {this.state.showCheckMark && (
+          {showCheckMark && (
           <OtherBlueDot>
             <CheckMark src={checkMark} />
           </OtherBlueDot>

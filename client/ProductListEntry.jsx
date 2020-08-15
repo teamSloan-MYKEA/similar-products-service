@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as heartRegular } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as heartSolid } from '@fortawesome/free-solid-svg-icons';
-import styled from 'styled-components';
 import {
-  MainProductContainer, Product, ProductName, ProductDescription, ProductPrice, PriceDetails, MoreOptions, Image, HeartContainer, HeartStyle, BagContainer
+  MainProductContainer, Product, ProductName, ProductDescription,
+  ProductPrice, PriceDetails, MoreOptions, Image, HeartContainer, HeartStyle, BagContainer,
 } from './styles/ProductListEntryStyles';
 import Bag from './Bag';
 
@@ -55,9 +55,10 @@ class ProductListEntry extends React.Component {
   }
 
   onBagClick() {
-    const { name } = this.props.product;
-    const { onLikeBagClick } = this.props;
-    const { addToBag } = this.state;
+    // const { name } = this.props.product;
+    const { onLikeBagClick, product } = this.props;
+    const { name } = product;
+    // const { addToBag } = this.state;
     this.setState({
       addToBag: true,
     });
@@ -71,9 +72,10 @@ class ProductListEntry extends React.Component {
   }
 
   render() {
+    const { product } = this.props;
     const {
       photo1, photo2, name, description, price,
-    } = this.props.product;
+    } = product;
     const { showHeart, showBag, like } = this.state;
     return (
       <MainProductContainer
@@ -114,14 +116,9 @@ class ProductListEntry extends React.Component {
   }
 }
 
-// ProductListEntry.propTypes = {
-//   product.photo1: PropTypes.string.isRequired,
-//   product.photo2: PropTypes.string.isRequired,
-//   product.name: PropTypes.string.isRequired,
-//   product.description: PropTypes.string.isRequired,
-//   product.price: PropTypes.number.isRequired,
-//   product.onLikeBagClick: PropTypes.func.isRequired,
-
-// };
+ProductListEntry.propTypes = {
+  onLikeBagClick: PropTypes.func.isRequired,
+  product: PropTypes.instanceOf(Object).isRequired,
+};
 
 export default ProductListEntry;
