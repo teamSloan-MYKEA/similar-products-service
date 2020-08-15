@@ -63,7 +63,10 @@ class SimilarProducts extends React.Component {
 
   onLikeBagClick(name, addTo) {
     // maybe this takes a callback in order to complete
-    const counter = 0;
+    // const counter = 0;
+    // if (somestate) {
+    //   setTime 5001
+    // }
     if (addTo === 'like') {
       this.setState({
         clickedName: name,
@@ -76,7 +79,7 @@ class SimilarProducts extends React.Component {
       });
     }
     setTimeout(() => {
-      counter++;
+      // counter++;
       this.setState({
         clickedName: '',
       });
