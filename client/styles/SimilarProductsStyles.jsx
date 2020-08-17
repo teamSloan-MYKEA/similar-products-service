@@ -8,6 +8,7 @@ const TitleContainer = styled.div`
 `;
 
 const SimilarProductsTitle = styled.h1`
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&display=swap');
 font-family: 'Noto Sans';
 font-weight: 700;
