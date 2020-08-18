@@ -7,7 +7,7 @@ import {
 } from './styles/SimilarProductsStyles';
 import ProductList from './ProductList';
 import Toast from './toast';
-import DummyData from '../database/dummyData';
+// import DummyData from '../database/dummyData';
 const bagIcon = 'https://ikea-ch.s3.us-east-2.amazonaws.com/shoppingBag.png';
 const checkMark = 'https://ikea-ch.s3.us-east-2.amazonaws.com/checkmark.png';
 
@@ -19,7 +19,7 @@ class SimilarProducts extends React.Component {
     this.state = {
     /* remember to switch this back to an empty array and change the axios call
       to get real data. server side routing has to be changed as well. */
-      products: DummyData,
+      products: [],
       index: 0,
       showArrows: false,
       clickedName: '',
@@ -36,13 +36,11 @@ class SimilarProducts extends React.Component {
     this.onHover = this.onHover.bind(this);
     this.onLikeBagClick = this.onLikeBagClick.bind(this);
     this.getData = this.getData.bind(this);
-    this.getDummyData = this.getDummyData.bind(this);
-    this.getIcons = this.getIcons.bind(this);
+    // this.getDummyData = this.getDummyData.bind(this);
   }
 
   componentDidMount() {
-    this.getDummyData();
-    // this.getIcons();
+    this.getData();
   }
 
   onClickRight() {
@@ -96,7 +94,7 @@ class SimilarProducts extends React.Component {
   }
 
   getData() {
-    axios.get(`photos${window.location.pathname}`)
+    axios.get(`api${window.location.pathname}`)
       .then((similarProducts) => {
         this.setState({
           products: similarProducts.data,
@@ -107,29 +105,15 @@ class SimilarProducts extends React.Component {
       });
   }
 
-  getDummyData() {
-    axios.get('/')
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => {
-        throw err;
-      });
-  }
-
-  getIcons() {
-    // const shoppingBag = 'https://ikea-ch.s3.us-east-2.amazonaws.com/shoppingBag.png';
-    // const checkMark = 'https://ikea-ch.s3.us-east-2.amazonaws.com/checkmark.png';
-    // const promiseBag = axios.get(shoppingBag);
-    // const promiseCheckMark = axios.get(checkMark);
-
-    // Promise.all([promiseBag, promiseCheckMark]).then((icons) => {
-    //   this.setState({
-    //     BAG: icons[0],
-    //     CHECKMARK: icons[1],
-    //   });
-    // });
-  }
+  // getDummyData() {
+  //   axios.get('/')
+  //     .then((data) => {
+  //       console.log(data);
+  //     })
+  //     .catch((err) => {
+  //       throw err;
+  //     });
+  // }
 
   render() {
     const {

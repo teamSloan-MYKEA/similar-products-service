@@ -6,19 +6,19 @@ const cors = require('cors');
 const db = require('../database/db.js');
 
 app.use(cors());
-app.use('/', express.static('dist'));
-// app.use('/:id', express.static('dist'));
+// app.use('/', express.static('dist'));
+app.use('/:id', express.static('dist'));
 
-// app.get('/:id/api/:id', (req, res) => {
-//   const productNumber = req.params.id;
-//   db.SimilarProducts.find({ id: productNumber })
-//     .then((similarProducts) => {
-//       res.json(similarProducts);
-//     })
-//     .catch((err) => {
-//       throw err;
-//     });
-// });
+app.get('/:id/api/:id', (req, res) => {
+  const productNumber = req.params.id;
+  db.SimilarProducts.find({ id: productNumber })
+    .then((similarProducts) => {
+      res.json(similarProducts);
+    })
+    .catch((err) => {
+      throw err;
+    });
+});
 
 db.connect.on('error', console.error.bind(console, 'connection error:'));
 db.connect.once('open', () => {
