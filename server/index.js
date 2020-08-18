@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 const express = require('express');
+const path = require('path');
 
 const app = express();
 const cors = require('cors');
@@ -7,7 +8,9 @@ const db = require('../database/db.js');
 
 app.use(cors());
 // app.use('/', express.static('dist'));
-app.use('/:id', express.static('dist'));
+// app.use('/:id', express.static('dist'));
+app.use('/:id', express.static(path.join(__dirname, './../public')));
+
 
 app.get('/:id/api/:id', (req, res) => {
   const productNumber = req.params.id;
