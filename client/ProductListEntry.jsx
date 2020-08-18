@@ -108,7 +108,8 @@ class ProductListEntry extends React.Component {
           <div className="product-stars">stars</div>
           <MoreOptions>more options</MoreOptions>
           <BagContainer onClick={this.onBagClick}>
-            {showBag && <Bag />}
+            {showBag && <Bag BAG={this.props.BAG}
+            CHECKMARK={this.props.CHECKMARK}/>}
           </BagContainer>
         </Product>
       </MainProductContainer>

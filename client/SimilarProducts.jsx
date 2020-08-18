@@ -8,6 +8,8 @@ import {
 import ProductList from './ProductList';
 import Toast from './toast';
 import DummyData from '../database/dummyData';
+const bagIcon = 'https://ikea-ch.s3.us-east-2.amazonaws.com/shoppingBag.png';
+const checkMark = 'https://ikea-ch.s3.us-east-2.amazonaws.com/checkmark.png';
 
 const axios = require('axios');
 
@@ -23,6 +25,8 @@ class SimilarProducts extends React.Component {
       clickedName: '',
       addTo: '',
       showToast: false,
+      BAG: bagIcon,
+      CHECKMARK: checkMark,
     };
 
     this.timeOut = null;
@@ -33,10 +37,12 @@ class SimilarProducts extends React.Component {
     this.onLikeBagClick = this.onLikeBagClick.bind(this);
     this.getData = this.getData.bind(this);
     this.getDummyData = this.getDummyData.bind(this);
+    this.getIcons = this.getIcons.bind(this);
   }
 
   componentDidMount() {
     this.getDummyData();
+    // this.getIcons();
   }
 
   onClickRight() {
@@ -111,6 +117,20 @@ class SimilarProducts extends React.Component {
       });
   }
 
+  getIcons() {
+    // const shoppingBag = 'https://ikea-ch.s3.us-east-2.amazonaws.com/shoppingBag.png';
+    // const checkMark = 'https://ikea-ch.s3.us-east-2.amazonaws.com/checkmark.png';
+    // const promiseBag = axios.get(shoppingBag);
+    // const promiseCheckMark = axios.get(checkMark);
+
+    // Promise.all([promiseBag, promiseCheckMark]).then((icons) => {
+    //   this.setState({
+    //     BAG: icons[0],
+    //     CHECKMARK: icons[1],
+    //   });
+    // });
+  }
+
   render() {
     const {
       products, index, clickedName, addTo, showArrows, showToast,
@@ -144,6 +164,8 @@ class SimilarProducts extends React.Component {
             index={index}
             products={products}
             onLikeBagClick={this.onLikeBagClick}
+            BAG={this.state.BAG}
+            CHECKMARK={this.state.CHECKMARK}
           />
           <ArrowContainer>
             {showArrows

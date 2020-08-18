@@ -2,12 +2,14 @@
 const express = require('express');
 
 const app = express();
+const cors = require('cors');
 const db = require('../database/db.js');
 
+app.use(cors());
 app.use('/', express.static('dist'));
 // app.use('/:id', express.static('dist'));
 
-// app.get('/:id/photos/:id', (req, res) => {
+// app.get('/:id/api/:id', (req, res) => {
 //   const productNumber = req.params.id;
 //   db.SimilarProducts.find({ id: productNumber })
 //     .then((similarProducts) => {

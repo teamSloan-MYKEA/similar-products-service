@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import ProductListEntry from './ProductListEntry';
 import { ParentWrapper, ProductsContainer } from './styles/ProductListStyles';
 
-const ProductList = ({ index, products, onLikeBagClick }) => (
+const ProductList = ({ index, products, onLikeBagClick, BAG, CHECKMARK }) => (
   <ParentWrapper>
     <ProductsContainer style={{ transform: `translateX(-${index * 8.35}%)` }}>
       {products.map((product) => (
-        <ProductListEntry product={product} onLikeBagClick={onLikeBagClick} />))}
+        <ProductListEntry product={product} onLikeBagClick={onLikeBagClick} BAG={BAG}
+        CHECKMARK={CHECKMARK}/>))}
     </ProductsContainer>
   </ParentWrapper>
 );

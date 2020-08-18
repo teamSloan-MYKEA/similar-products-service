@@ -1,6 +1,6 @@
 import React from 'react';
-import shoppingBag from './images/shoppingBag.png';
-import checkMark from './images/checkmark.png';
+// import shoppingBag from './images/shoppingBag.png';
+// import checkMark from './images/checkmark.png';
 import {
   InnerBagContainer, BagContainer, BlueDot, OtherBlueDot, WhiteDot, CheckMark, ShoppingBag,
 } from './styles/BagStyles';
@@ -33,13 +33,13 @@ class Bag extends React.Component {
     return (
       <BagContainer>
         <InnerBagContainer>
-          <ShoppingBag src={shoppingBag} style={{ maxWidth: '46px' }} onClick={this.onClickBag} />
+          <ShoppingBag src={this.props.BAG} style={{ maxWidth: '46px' }} onClick={this.onClickBag} />
           <BlueDot>
             {showWhiteDot && <WhiteDot />}
           </BlueDot>
           {showCheckMark && (
           <OtherBlueDot>
-            <CheckMark src={checkMark} />
+            <CheckMark src={this.props.CHECKMARK} />
           </OtherBlueDot>
           )}
         </InnerBagContainer>
