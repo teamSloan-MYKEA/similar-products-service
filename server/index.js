@@ -9,10 +9,12 @@ const db = require('../database/db.js');
 app.use(cors());
 // app.use('/', express.static('dist'));
 // app.use('/:id', express.static('dist'));
+// app.use(express.json());
+app.use(express.text());
+app.use(express.urlencoded({ extended: false }));
 app.use('/:id', express.static(path.join(__dirname, './../public')));
 
-
-app.get('/:id/api/:id', (req, res) => {
+app.get('/:id/similar/:id/', (req, res) => {
   const productNumber = req.params.id;
   db.SimilarProducts.find({ id: productNumber })
     .then((similarProducts) => {
