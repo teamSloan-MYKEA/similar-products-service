@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 const ParentWrapper = styled.div`
   position: relative;
-  width: 100vw;
-  height: 550px;
+  width: 60vw;
+  height: 35vh;
   overflow-x: scroll;
   overflow-y: hidden;
   // background-color: red;

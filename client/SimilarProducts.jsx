@@ -95,7 +95,6 @@ class SimilarProducts extends React.Component {
 
   getData() {
     axios.get(`similar${window.location.pathname}`)
-    // console.log(window.location.pathname)
       .then((similarProducts) => {
         this.setState({
           products: similarProducts.data,

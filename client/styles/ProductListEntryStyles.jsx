@@ -8,8 +8,8 @@ const Product = styled.div`
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&display=swap');
   font-family: 'Noto Sans';
   font-weight: regular;
-  font-size: 12px;
-  width: 20vw;
+  font-size: 15px;
+  width: 13vw;
   position:relative;
   margin: 1vw;
   cursor: pointer;
@@ -41,7 +41,7 @@ const MoreOptions = styled.div`
 `;
 
 const Image = styled.img`
-  width: 20vw;
+  width: 13vw;
 `;
 
 const HeartContainer = styled.div`
