@@ -4,14 +4,14 @@ const MainProductContainer = styled.div`
 `;
 
 const Product = styled.div`
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+  // @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&display=swap');
   font-family: 'Noto Sans';
   font-weight: regular;
   font-size: 15px;
-  width: 13vw;
+  width: 11vw;
   position:relative;
-  margin: 1vw;
+  margin: 1.5vw;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -35,23 +35,23 @@ const PriceDetails = styled.div`
   display: inline;
   position: absolute;
   font-size: 12px;
-  top: 4px;
+  top: 1vh;
 `;
 const MoreOptions = styled.div`
 `;
 
 const Image = styled.img`
-  width: 10vw;
+  width: 13.5vw;
 `;
 
 const HeartContainer = styled.div`
-  height: 20px;
+  height: 15px;
   opacity: ${(props) => (props.like ? '.8' : '.5')};
 `;
 
 const HeartStyle = {
   position: 'relative',
-  left: '19vw',
+  left: '94%',
   transform: 'scale(1.2)',
   height: '20px',
 };
@@ -61,7 +61,7 @@ const BagContainer = styled.div`
   height: 100px;
   position: absolute;
   top: 82%;
-  left: 77%;
+  left: 86%;
 `;
 
 export {
