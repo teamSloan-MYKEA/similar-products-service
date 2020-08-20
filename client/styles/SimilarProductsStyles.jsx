@@ -18,7 +18,7 @@ font-size: 30px;
 const SimilarProductsContainer = styled.div`
   display: flex;
   width: 90vw;
-  height: 500px;
+  height: 40vh;
   // background-color: green;
   padding-right: 50px;
   padding-left: 15px;
