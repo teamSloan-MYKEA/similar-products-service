@@ -10,7 +10,7 @@ const ToastAnimation = keyframes`
 `;
 
 const ParentToastContainer = styled.div`
-  position: absolute;
+  position: fixed;
   top: 7vh;
   left: 75vw;
   z-index: 1;

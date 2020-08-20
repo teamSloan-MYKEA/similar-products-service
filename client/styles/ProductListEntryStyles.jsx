@@ -41,7 +41,7 @@ const MoreOptions = styled.div`
 `;
 
 const Image = styled.img`
-  width: 13vw;
+  width: 10vw;
 `;
 
 const HeartContainer = styled.div`
