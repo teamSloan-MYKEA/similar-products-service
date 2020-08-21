@@ -9,6 +9,7 @@ import {
   ProductPrice, PriceDetails, MoreOptions, Image, HeartContainer, HeartStyle, BagContainer,
 } from './styles/ProductListEntryStyles';
 import Bag from './Bag';
+import StarBar from './StarBar';
 
 class ProductListEntry extends React.Component {
   constructor(props) {
@@ -74,7 +75,7 @@ class ProductListEntry extends React.Component {
   render() {
     const { product } = this.props;
     const {
-      photo1, photo2, name, description, price,
+      photo1, photo2, name, description, price, stars,
     } = product;
     const { showHeart, showBag, like } = this.state;
     return (
@@ -105,8 +106,9 @@ class ProductListEntry extends React.Component {
             {price}
             <PriceDetails>.00</PriceDetails>
           </ProductPrice>
-          <div className="product-stars">stars</div>
-          <MoreOptions>more options</MoreOptions>
+          {/* <div className="product-stars">stars</div> */}
+          <StarBar score={stars} />
+          <MoreOptions>More options</MoreOptions>
           <BagContainer onClick={this.onBagClick}>
             {showBag && <Bag BAG={this.props.BAG}
             CHECKMARK={this.props.CHECKMARK}/>}
