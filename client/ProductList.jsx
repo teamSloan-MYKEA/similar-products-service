@@ -5,7 +5,7 @@ import { ParentWrapper, ProductsContainer } from './styles/ProductListStyles';
 
 const ProductList = ({ index, products, onLikeBagClick, BAG, CHECKMARK }) => (
   <ParentWrapper>
-    <ProductsContainer style={{ transform: `translateX(-${index * 8.35}%)` }}>
+    <ProductsContainer style={{ transform: `translateX(-${index * 8.43}%)` }}>
       {products.map((product) => (
         <ProductListEntry product={product} onLikeBagClick={onLikeBagClick} BAG={BAG}
         CHECKMARK={CHECKMARK}/>))}

@@ -17,7 +17,7 @@ const CheckAnimation = keyframes`
     top: 60%;
   }
   100% {
-    top: 35%;
+    top: 25%;
   }
 `;
 

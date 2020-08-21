@@ -10,6 +10,7 @@ const createRandomObj = (index, names, descriptions, prices, photos, Schema) => 
     id: index,
     name: names[randomNumber(names)],
     description: descriptions[randomNumber(descriptions)],
+    stars: Math.floor(Math.random() * 5) + 1,
     price: prices[randomNumber(prices)],
     photo1: AWS + photos[randomPhotoIndex][0],
     photo2: AWS + photos[randomPhotoIndex][1],
