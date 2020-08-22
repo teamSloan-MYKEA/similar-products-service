@@ -99,20 +99,22 @@ class ProductListEntry extends React.Component {
             onMouseOver={(e) => (e.target.src = photo2)}
             onMouseOut={(e) => (e.target.src = photo1)}
           />
-          <ProductName style={{ textDecoration: showHeart ? 'underline' : 'none' }}>{name}</ProductName>
-          <ProductDescription>{description}</ProductDescription>
-          <ProductPrice>
-            <PriceDetails style={{ marginLeft: '-8px' }}>$</PriceDetails>
-            {price}
-            <PriceDetails>.00</PriceDetails>
-          </ProductPrice>
-          {/* <div className="product-stars">stars</div> */}
-          <StarBar score={stars} />
-          <MoreOptions>More options</MoreOptions>
-          <BagContainer onClick={this.onBagClick}>
-            {showBag && <Bag BAG={this.props.BAG}
-            CHECKMARK={this.props.CHECKMARK}/>}
-          </BagContainer>
+          <div style={{marginTop: '30px'}}>
+            <ProductName style={{ textDecoration: showHeart ? 'underline' : 'none' }}>{name}</ProductName>
+            <ProductDescription>{description}</ProductDescription>
+            <ProductPrice>
+              <PriceDetails style={{ marginLeft: '-8px' }}>$</PriceDetails>
+              {price}
+              <PriceDetails>.00</PriceDetails>
+            </ProductPrice>
+            {/* <div className="product-stars">stars</div> */}
+            <StarBar score={stars} />
+            <MoreOptions>More options</MoreOptions>
+            <BagContainer onClick={this.onBagClick}>
+              {showBag && <Bag BAG={this.props.BAG}
+                CHECKMARK={this.props.CHECKMARK} />}
+            </BagContainer>
+          </div>
         </Product>
       </MainProductContainer>
     );

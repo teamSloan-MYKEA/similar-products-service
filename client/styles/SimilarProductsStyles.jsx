@@ -27,7 +27,7 @@ const SimilarProductsContainer = styled.div`
 
 const ArrowContainer = styled.div`
   height: 450px;
-  width: 27px;
+  width: 100px;
 `;
 
 export {
