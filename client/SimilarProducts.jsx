@@ -128,7 +128,7 @@ class SimilarProducts extends React.Component {
           </SimilarProductsTitle>
         </TitleContainer>
         <SimilarProductsContainer onMouseEnter={this.onHover} onMouseLeave={this.onHover}>
-          <ArrowContainer>
+          <ArrowContainer style={{width: '35px'}}>
             {showArrows
             && (
             <FontAwesomeIcon

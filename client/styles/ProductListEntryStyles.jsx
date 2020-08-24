@@ -11,7 +11,7 @@ const Product = styled.div`
   font-size: 15px;
   width: 11vw;
   position:relative;
-  margin: 1.5vw;
+  margin: 1.6vw;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -24,6 +24,7 @@ const ProductName = styled.div`
 `;
 const ProductDescription = styled.div`
   font-size: 14px;
+  color: rgb(74,74,74);
 `;
 const ProductPrice = styled.div`
   font-size: 22px;
@@ -35,13 +36,14 @@ const PriceDetails = styled.div`
   display: inline;
   position: absolute;
   font-size: 12px;
-  top: 1vh;
+  top: 15%;
 `;
 const MoreOptions = styled.div`
+  color: rgb(74,74,74);
 `;
 
 const Image = styled.img`
-  width: 13.5vw;
+  width: 100%;
 `;
 
 const HeartContainer = styled.div`
@@ -51,9 +53,9 @@ const HeartContainer = styled.div`
 
 const HeartStyle = {
   position: 'relative',
-  left: '94%',
+  left: '89%',
   transform: 'scale(1.2)',
-  height: '20px',
+  height: '16px',
 };
 
 const BagContainer = styled.div`
