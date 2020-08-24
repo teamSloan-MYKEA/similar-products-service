@@ -29,18 +29,26 @@ class ProductListEntry extends React.Component {
     const {
       like, showHeart, showBag, addToBag,
     } = this.state;
-    if (like) {
+    if (like === true && showHeart === true) {
       this.setState({
-        showHeart: true,
+        showBag: !showBag,
       });
-    } if (addToBag) {
+    }
+    if (addToBag) {
       this.setState({
         showBag: true,
       });
-    } else {
+    } else if (like === false) {
       this.setState({
         showHeart: !showHeart,
         showBag: !showBag,
+      }, () => {
+        setTimeout(() => {
+          this.setState({
+            showBag: false,
+            addToBag: false,
+          });
+        }, 5000);
       });
     }
   }
@@ -50,16 +58,15 @@ class ProductListEntry extends React.Component {
     const { onLikeBagClick, product } = this.props;
     const { name } = product;
     this.setState({
-      like: !like,
+      like: true,
+      showHeart: true,
     });
     onLikeBagClick(name, 'like');
   }
 
   onBagClick() {
-    // const { name } = this.props.product;
     const { onLikeBagClick, product } = this.props;
     const { name } = product;
-    // const { addToBag } = this.state;
     this.setState({
       addToBag: true,
     });
@@ -79,10 +86,8 @@ class ProductListEntry extends React.Component {
     } = product;
     const { showHeart, showBag, like } = this.state;
     return (
-      <MainProductContainer
-        onMouseEnter={this.onImageHover}
-        onMouseLeave={this.onImageHover}
-      >
+      <div onMouseEnter={this.onImageHover}
+      onMouseLeave={this.onImageHover}>
         <HeartContainer like={like}>
           {showHeart
             && (
@@ -93,6 +98,11 @@ class ProductListEntry extends React.Component {
               />
             )}
         </HeartContainer>
+      <MainProductContainer
+        // onMouseEnter={this.onImageHover}
+        // onMouseLeave={this.onImageHover}
+      >
+
         <Product>
           <Image
             src={photo1}
@@ -117,6 +127,7 @@ class ProductListEntry extends React.Component {
           </div>
         </Product>
       </MainProductContainer>
+      </div>
     );
   }
 }

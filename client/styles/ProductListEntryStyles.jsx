@@ -53,9 +53,9 @@ const HeartContainer = styled.div`
 
 const HeartStyle = {
   position: 'relative',
-  left: '94%',
+  left: '89%',
   transform: 'scale(1.2)',
-  height: '20px',
+  height: '16px',
 };
 
 const BagContainer = styled.div`
