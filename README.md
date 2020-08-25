@@ -1,6 +1,6 @@
 # Project Name
 
-> This is Team O'Malley's Front End Capstone project detailing an items page from IKEA. Each member of the team was tasked to build part of the page using React components and persistent data that mimic the website.
+> This is Team O'Malley's Front End Capstone project detailing an items page from IKEA. Each member of the team was tasked to build part of the page using React components and persistent data that mimic the website. This microservice will render 12 unique similar products viewable in a carousel.
 
 ## Related Projects
 
@@ -9,32 +9,30 @@
   - https://github.com/hrr47-fec-omalley/reviews-service
   - https://github.com/hrr47-fec-omalley/similar-products-service
 
-## Table of Contents
-
-1. [Usage](#Usage)
-1. [Requirements](#requirements)
-1. [Development](#development)
-
-## Usage
-
-> Some usage instructions
 
 ## Requirements
 
 An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 
-- Node 6.13.0
-- etc
-
-## Development
-
+- Node
 
 ### Installing Dependencies
 
 From within the root directory:
 
-```sh
-npm install -g webpack
 npm install
-```
+npm install -g nodemon
+
+## Development
+
+From the root directory:
+
+  # Seed to database
+  npm run seed
+  # Testing
+  npm run test
+  # Start webpack
+  npm run client
+  # Start server
+  npm run server
 
