@@ -19,38 +19,35 @@ class ProductListEntry extends React.Component {
       showBag: false,
       like: false,
       addToBag: false,
+      hover: false,
     };
-    this.onImageHover = this.onImageHover.bind(this);
+
     this.onHeartClick = this.onHeartClick.bind(this);
     this.onBagClick = this.onBagClick.bind(this);
+    this.onMouseLeave = this.onMouseLeave.bind(this);
+    this.onMouseEnter = this.onMouseEnter.bind(this);
   }
 
-  onImageHover() {
+  onMouseEnter() {
     const {
       like, showHeart, showBag, addToBag,
     } = this.state;
-    if (like === true && showHeart === true) {
-      this.setState({
-        showBag: !showBag,
-      });
-    }
-    if (addToBag) {
-      this.setState({
-        showBag: true,
-      });
-    } else if (like === false) {
-      this.setState({
-        showHeart: !showHeart,
-        showBag: !showBag,
-      }, () => {
-        setTimeout(() => {
-          this.setState({
-            showBag: false,
-            addToBag: false,
-          });
-        }, 5000);
-      });
-    }
+    this.setState({
+      hover: true,
+      showBag: true,
+      showHeart: true || like,
+    });
+  }
+
+  onMouseLeave() {
+    const {
+      like, hover, showHeart, showBag, addToBag
+    } = this.state;
+    this.setState({
+      hover: false,
+      showHeart: false || like,
+      showBag: this.state.addToBag,
+    });
   }
 
   onHeartClick() {
@@ -72,10 +69,11 @@ class ProductListEntry extends React.Component {
     });
     setTimeout(() => {
       this.setState({
-        showBag: false,
         addToBag: false,
+        showBag: false,
       });
     }, 2000);
+
     onLikeBagClick(name, 'bag');
   }
 
@@ -86,8 +84,8 @@ class ProductListEntry extends React.Component {
     } = product;
     const { showHeart, showBag, like } = this.state;
     return (
-      <div onMouseEnter={this.onImageHover}
-      onMouseLeave={this.onImageHover}>
+      <div onMouseEnter={this.onMouseEnter}
+      onMouseLeave={this.onMouseLeave}>
         <HeartContainer like={like}>
           {showHeart
             && (
@@ -98,10 +96,7 @@ class ProductListEntry extends React.Component {
               />
             )}
         </HeartContainer>
-      <MainProductContainer
-        // onMouseEnter={this.onImageHover}
-        // onMouseLeave={this.onImageHover}
-      >
+      <MainProductContainer>
 
         <Product>
           <Image
