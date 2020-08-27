@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/similar-products', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost/similar-products', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
 

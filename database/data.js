@@ -1,4 +1,4 @@
-const AWS = 'https://ikea-ch.s3.us-east-2.amazonaws.com/';
+const AWS = 'https://sdc-ikea-1.s3-us-west-1.amazonaws.com/';
 
 const names = ['STRANDMON', 'SÖDERHAMN', 'KIVIK', 'GISTAD', 'MORABO', 'KOARP', 'PELLO', 'JÄPPLING', 'EKERÖ', 'EKTORP', 'VALLENTUNA', 'POÄNG', 'BINGSTA', 'MUREN', 'BUSKBO', 'FÄRLÖV', 'RÅDVIKEN', 'LIDHULT', 'MALM', 'HEMNES'];
 

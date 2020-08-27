@@ -12,8 +12,8 @@ const testProduct = {
   name: 'LIDHULT',
   description: 'Rocking Chair',
   price: 379,
-  photo1: 'https://ikea-ch.s3.us-east-2.amazonaws.com/bingsta-high-back-armchair__1.webp',
-  photo2: 'https://ikea-ch.s3.us-east-2.amazonaws.com/bingsta-high-back-armchair__2.webp',
+  photo1: 'https://sdc-ikea-1.s3-us-west-1.amazonaws.com/bingsta-high-back-armchair__1.webp',
+  photo2: 'https://sdc-ikea-1.s3-us-west-1.amazonaws.com/bingsta-high-back-armchair__2.webp',
 };
 
 describe('<ProductListEntry />', () => {
