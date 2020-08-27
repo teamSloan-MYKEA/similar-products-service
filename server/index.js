@@ -25,6 +25,55 @@ app.get('/:id/similar/:id/', (req, res) => {
     });
 });
 
+app.post('/:id/similar/:id', (req, res) => {
+  const {_id, id, name, description, stars, price, photo1, photo2} = req.body;
+  var id = path.basename(req.originalUrl);
+  var query =
+    {
+      id: id,
+      name: name,
+      description: description,
+      stars: stars,
+      price: price,
+      photo1: photo1,
+      photo2: photo2,
+
+    };
+  db.Review.updateOne(query, (err, data) => {
+    if (err) {
+      throw err;
+      res.status(500).send('db error');
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.put('/:id/similar/:id', (req, res) => {
+  const id = path.basename(req.originalUrl);
+  var query = {name: req.body.name};
+  db.Review.findByIdAndUpdate("5f473aff386ebc6a1cfbd029", query, (err, data) => {
+    if (err) {
+      throw err;
+      res.status(500).send('db error');
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.delete('/:id/similar/:id', (req, res) => {
+  const id = path.basename(req.originalUrl);
+  db.Review.findByIdAndDelete("5f473aff386ebc6a1cfbd029", (err, data) => {
+    if (err) {
+      throw err;
+      res.status(500).send('db error');
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
 db.connect.on('error', console.error.bind(console, 'connection error:'));
 db.connect.once('open', () => {
   console.log('Connected to DB!');

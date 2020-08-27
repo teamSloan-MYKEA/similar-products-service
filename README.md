@@ -36,3 +36,18 @@ From the root directory:
   # Start server
   npm run server
 
+## Endpoints
+
+### GET - /:id/similar/:id
+Getting pictures with ID
+
+### POST - /:id/similar/:id
+Create records with id, name, description, stars, price, photo1, and photo2
+
+### PUT - /:id/similar/:id
+Create records with id and name
+
+### DELETE - /:id/similar/:id
+Delete records with id
+
+
