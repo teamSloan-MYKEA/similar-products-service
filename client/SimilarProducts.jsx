@@ -8,8 +8,8 @@ import {
 import ProductList from './ProductList';
 import Toast from './toast';
 // import DummyData from '../database/dummyData';
-const bagIcon = 'https://ikea-ch.s3.us-east-2.amazonaws.com/shoppingBag.png';
-const checkMark = 'https://ikea-ch.s3.us-east-2.amazonaws.com/checkmark.png';
+const bagIcon = 'https://sdc-ikea-1.s3-us-west-1.amazonaws.com/shoppingBag.png';
+const checkMark = 'https://sdc-ikea-1.s3-us-west-1.amazonaws.com/checkmark.png';
 
 const axios = require('axios');
 
