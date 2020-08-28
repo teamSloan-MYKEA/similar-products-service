@@ -8,8 +8,8 @@ const db = require('../database/db.js');
 
 app.use(cors());
 // app.use('/:id', express.static('dist'));
-// app.use(express.json());
-app.use(express.text());
+app.use(express.json());
+// app.use(express.text());
 app.use(express.urlencoded({ extended: false }));
 // app.use('/', express.static(path.join(__dirname, './../public')));
 app.use('/:id', express.static(path.join(__dirname, './../public')));
@@ -25,53 +25,52 @@ app.get('/:id/similar/:id/', (req, res) => {
     });
 });
 
-app.post('/:id/similar/:id', (req, res) => {
-  const {_id, id, name, description, stars, price, photo1, photo2} = req.body;
-  var id = path.basename(req.originalUrl);
-  var query =
-    {
-      id: id,
-      name: name,
-      description: description,
-      stars: stars,
-      price: price,
-      photo1: photo1,
-      photo2: photo2,
-
-    };
-  db.Review.updateOne(query, (err, data) => {
-    if (err) {
-      throw err;
-      res.status(500).send('db error');
-    } else {
-      res.status(200).send(data);
-    }
-  });
+app.post('/:id/similar/:id/', (req, res) => {
+  console.log('POST REQ BODY', req.body);
+  // const newSimilarProducts = new db.SimilarProducts({
+  //   id: req.body.id,
+  //   name: req.body.name,
+  //   description: req.body.description,
+  //   stars: req.body.stars,
+  //   price: req.body.price,
+  //   photo1: req.body.photo1,
+  //   photo2: req.body.photo2,
+  // });
+  const newSimilarProducts = new db.SimilarProducts(req.body);
+  newSimilarProducts.save()
+    .then(() => {
+      res.status(200).send('POST REQUEST SUCCESS');
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('POST REQUEST FAIL');
+    });
 });
 
 app.put('/:id/similar/:id', (req, res) => {
-  const id = path.basename(req.originalUrl);
-  var query = {name: req.body.name};
-  db.Review.findByIdAndUpdate("5f473aff386ebc6a1cfbd029", query, (err, data) => {
-    if (err) {
-      throw err;
-      res.status(500).send('db error');
-    } else {
-      res.status(200).send(data);
-    }
-  });
+  console.log('PUT REQ BODY', req.body);
+  const productNumber = req.params.id;
+  db.SimilarProducts.updateOne({ id: productNumber }, req.body)
+    .then(() => {
+      res.status(200).send('PUT REQUEST SUCCESS');
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('PUT REQUEST FAIL');
+    });
 });
 
 app.delete('/:id/similar/:id', (req, res) => {
-  const id = path.basename(req.originalUrl);
-  db.Review.findByIdAndDelete("5f473aff386ebc6a1cfbd029", (err, data) => {
-    if (err) {
-      throw err;
-      res.status(500).send('db error');
-    } else {
-      res.status(200).send(data);
-    }
-  });
+  console.log('DELETE REQ BODY', req.body);
+  const productNumber = req.params.id;
+  db.SimilarProducts.deleteOne({ id: productNumber }, req.body)
+    .then(() => {
+      res.status(200).send('DELETE REQUEST SUCCESS');
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('DELETE REQUEST FAIL');
+    });
 });
 
 db.connect.on('error', console.error.bind(console, 'connection error:'));
