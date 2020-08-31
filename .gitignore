@@ -1,4 +1,6 @@
 bundle.js
+db-files
+records.csv
 ## MAC files ##
 .DS_Store
 
