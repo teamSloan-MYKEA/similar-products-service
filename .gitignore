@@ -1,6 +1,11 @@
 bundle.js
+commitlog
+data
 db-files
-records.csv
+hints
+saved_caches
+cassandra_records.csv
+postgres_records.csv
 ## MAC files ##
 .DS_Store
 
