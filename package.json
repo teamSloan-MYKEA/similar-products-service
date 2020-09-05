@@ -8,8 +8,9 @@
   },
   "scripts": {
     "test": "jest",
-    "client": "webpack --watch",
-    "server": "nodemon ./server/index.js --watch",
+    "build": "webpack --watch",
+    "start": "nodemon ./sv/server.js --watch",
+    "oldstart": "nodemon ./server/index.js --watch",
     "seed": "node ./seed.js"
   },
   "dependencies": {

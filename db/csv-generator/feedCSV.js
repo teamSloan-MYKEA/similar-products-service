@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const headers = 'productid, name, description, stars, price, photo1, photo2';
+const headers = 'id, name, description, stars, price, photo1, photo2';
 
 // const headers = 'id, description, name, photo1, photo2, price, productid, stars';
 
@@ -25,7 +25,7 @@ const generateTenMilionRecords = () => {
 
   function writeToFile() {
     for (let i = 0; i < 10000000; i++) {
-    // for (let i = 0; i < 50; i++) {
+    // for (let i = 0; i < 1000; i++) {
       const aRecord = generateOneRecord();
       // const aRecord = generateOneRecord(i + 1);
       stream.write(aRecord);
