@@ -1,10 +1,12 @@
 /* eslint-disable no-console */
 const express = require('express');
 const path = require('path');
+const cors = require('cors');
+
+const db = require('../database/db.js');
 
 const app = express();
-const cors = require('cors');
-const db = require('../database/db.js');
+const port = 3002;
 
 app.use(cors());
 // app.use('/:id', express.static('dist'));
@@ -47,7 +49,7 @@ app.post('/:id/similar/:id/', (req, res) => {
     });
 });
 
-app.put('/:id/similar/:id', (req, res) => {
+app.put('/:id/similar/:id/', (req, res) => {
   console.log('PUT REQ BODY', req.body);
   const productNumber = req.params.id;
   db.SimilarProducts.updateOne({ id: productNumber }, req.body)
@@ -60,7 +62,7 @@ app.put('/:id/similar/:id', (req, res) => {
     });
 });
 
-app.delete('/:id/similar/:id', (req, res) => {
+app.delete('/:id/similar/:id/', (req, res) => {
   console.log('DELETE REQ BODY', req.body);
   const productNumber = req.params.id;
   db.SimilarProducts.deleteOne({ id: productNumber }, req.body)
@@ -75,11 +77,9 @@ app.delete('/:id/similar/:id', (req, res) => {
 
 db.connect.on('error', console.error.bind(console, 'connection error:'));
 db.connect.once('open', () => {
-  console.log('Connected to DB!');
+  console.log('Connected to MongoDB');
 });
 
-const port = 3001;
-
 app.listen(port, () => {
-  console.log(`Connected to server on port ${port}`);
+  console.log(`Similar-Products service is listening at port ${port}`);
 });

@@ -6,6 +6,7 @@ hints
 saved_caches
 cassandra_records.csv
 postgres_records.csv
+postgres_records(1k).csv
 ## MAC files ##
 .DS_Store
 

@@ -11,8 +11,8 @@ const client = new Client({
 const query = `
 DROP TABLE IF EXISTS mykea_similarproducts;
 CREATE TABLE mykea_similarproducts (
-  id    SERIAL PRIMARY KEY  NOT NULL,
-  productid    INT          NOT NULL,
+  _id   SERIAL PRIMARY KEY  NOT NULL,
+  id           INT          NOT NULL,
   name         VARCHAR(25)  NOT NULL,
   description  VARCHAR(25)  NOT NULL,
   stars        INT          NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE mykea_similarproducts (
   photo1       TEXT         NOT NULL,
   photo2       TEXT         NOT NULL
 );
-COPY mykea_similarproducts(productid, name, description, stars, price, photo1, photo2)
+COPY mykea_similarproducts(id, name, description, stars, price, photo1, photo2)
 FROM '/var/lib/postgresql/data/postgres_records.csv'
 DELIMITER ','
 CSV HEADER;
@@ -28,19 +28,19 @@ CSV HEADER;
 
 client.connect(err => {
   if (err) {
-    console.log('POSTGRES CONNECTING FAIL', err.stack);
+    console.log('CONNECTING TO DOCKER-POSTGRES FAIL', err);
   } else {
-    console.log('POSTGRES CONNECTING SUCCESS');
+    console.log('CONNECTING TO DOCKER-POSTGRES SUCCESS');
     client.query(query, (err, res) => {
       if (err) {
-        console.log('CREATING TABLE FAIL', err.stack);
+        console.log('SEEDING DATA FAIL', err);
       } else {
-        console.log('CREATING TABLE SUCCESS', res.rows);
+        console.log('SEEDING DATA SUCCESS');
         client.end(err => {
           if (err) {
-            console.log('POSTGRES DISCONNECTING FAIL', err.stack);
+            console.log('DISCONNECTING DOCKER-POSTGRES FAIL', err);
           }
-          console.log('POSTGRES DISCONNECTING SUCCESS');
+          console.log('DISCONNECTING DOCKER-POSTGRES SUCCESS');
         });
       }
     });
