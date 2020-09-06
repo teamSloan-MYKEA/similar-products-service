@@ -49,7 +49,7 @@ client.connect(err => {
 
 /* -------------------- DOCKER COMMAND LINES --------------------
 
-docker run --name postgresSDC -p 5432:5432 -v /Users/nathanvu/Downloads/zHackReactor/Github/SDC/similar-products-service/db/csv-generator:/var/lib/postgresql/data -e POSTGRES_PASSWORD=mysecretpassword -e POSTGRES_DB=hrr47mykea -e PGDATA=/var/lib/postgresql/data/db-files/  -d postgres
+docker run --name postgresSDC -p 5432:5432 -v /Users/nathanvu/Downloads/zHackReactor/Github/SDC/similar-products-service/sv/db/csv-generator:/var/lib/postgresql/data -e POSTGRES_PASSWORD=mysecretpassword -e POSTGRES_DB=hrr47mykea -e PGDATA=/var/lib/postgresql/data/db-files/  -d postgres
 
 docker exec -it postgresSDC bash
 

@@ -39,7 +39,7 @@ client.connect()
 
 /* -------------------- CASSANDRA COMMAND LINES --------------------
 
-docker run --name cassandraSDC -p 9042:9042 -v /Users/nathanvu/Downloads/zHackReactor/Github/SDC/similar-products-service/db/csv-generator:/var/lib/cassandra -d cassandra
+docker run --name cassandraSDC -p 9042:9042 -v /Users/nathanvu/Downloads/zHackReactor/Github/SDC/similar-products-service/sv/db/csv-generator:/var/lib/cassandra -d cassandra
 
 docker exec -it cassandraSDC bash
 
