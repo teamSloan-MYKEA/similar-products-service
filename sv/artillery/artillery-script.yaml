@@ -21,7 +21,7 @@ config:
 
 
 scenarios:
-  - name: "Similar Products (GET REQUEST STRESS TESTING)"
+  - name: "Similar Products Service (GET REQUEST STRESS TESTING)"
     flow:
       - get:
           url: "/{{$randomNumber(1,100)}}"

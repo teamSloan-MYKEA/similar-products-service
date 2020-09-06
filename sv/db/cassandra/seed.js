@@ -45,10 +45,12 @@ docker exec -it cassandraSDC bash
 
 cqlsh
 
+npm run seed (taking ~ 28 mins)
+
 DESCRIBE keyspaces;
 USE hrr47mykea;
-SELECT * FROM mykea_similarproducts;
 (DROP KEYSPACE hrr47mykea;)
+SELECT * FROM mykea_similarproducts;
 
 COPY hrr47mykea.mykea_similarproducts (id, description, name, photo1, photo2, price, productid, stars) FROM '/var/lib/cassandra/cassandra_records.csv' WITH HEADER=TRUE;
 

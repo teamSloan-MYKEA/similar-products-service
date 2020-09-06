@@ -9,7 +9,7 @@
   "scripts": {
     "build": "webpack --watch",
     "start": "nodemon ./sv/server.js --watch",
-    "cvs": "node ./sv/db/csv-generator/feedCSV.js",
+    "csv": "node ./sv/db/csv-generator/feedCSV.js",
     "seed": "node ./sv/db/postgres/seed.js",
     "stress-testing" : "$(npm bin)/artillery run ./sv/artillery/artillery-script.yaml",
     "test": "jest",
