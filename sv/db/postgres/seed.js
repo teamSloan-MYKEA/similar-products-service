@@ -55,10 +55,10 @@ docker exec -it postgresSDC bash
 
 psql -U postgres
 
+npm run seed (taking ~ 9 mins)
+
 \l
 \c hrr47mykea
-SELECT * FROM mykea_similarproducts;
-(DROP TABLE IF EXISTS mykea_similarproducts;)
-(SELECT * FROM mykea_similarproducts WHERE id=10000000;)
+
 
 */

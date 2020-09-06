@@ -21,5 +21,5 @@ app.put('/:id/similar/:id', controllers.put);
 app.delete('/:id/similar/:id', controllers.delete);
 
 app.listen(port, () => {
-  console.log(`Similar-Products service is listening at http://localhost:${port}`);
+  console.log(`Similar-Products-Service is listening at http://localhost:${port}`);
 });
