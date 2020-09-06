@@ -7,6 +7,7 @@ saved_caches
 cassandra_records.csv
 postgres_records.csv
 postgres_records(1k).csv
+newrelic.js
 ## MAC files ##
 .DS_Store
 

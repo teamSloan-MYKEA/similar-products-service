@@ -7,11 +7,14 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "test": "jest",
     "build": "webpack --watch",
     "start": "nodemon ./sv/server.js --watch",
+    "cvs": "node ./sv/db/csv-generator/feedCSV.js",
+    "seed": "node ./sv/db/postgres/seed.js",
+    "stress-testing" : "$(npm bin)/artillery run ./sv/artillery/artillery-script.yaml",
+    "test": "jest",
     "oldstart": "nodemon ./server/index.js --watch",
-    "seed": "node ./seed.js"
+    "oldseed": "node ./seed.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
@@ -20,6 +23,7 @@
     "@fortawesome/react-fontawesome": "^0.1.11",
     "@testing-library/jest-dom": "^5.11.3",
     "@testing-library/react": "^10.4.8",
+    "artillery": "^1.6.1",
     "axios": "^0.19.2",
     "babel-jest": "^26.3.0",
     "cassandra-driver": "^4.6.0",
@@ -33,6 +37,7 @@
     "faker": "^5.1.0",
     "jest": "^26.2.2",
     "mongoose": "^5.9.27",
+    "newrelic": "^6.13.0",
     "nodemon": "^2.0.4",
     "path": "^0.12.7",
     "pg": "^8.3.3",
