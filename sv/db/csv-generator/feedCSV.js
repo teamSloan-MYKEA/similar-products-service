@@ -18,22 +18,51 @@ const generateOneRecord = () => (`
 // const generateOneRecord = (i) => (`
 // "${i}","${productDescriptions[randomProductInfo(productDescriptions)]}","${productNames[randomProductInfo(productNames)]}","${productPhotos()}","${productPhotos()}","${Math.floor(Math.random() * 1000) + 1}","${Math.floor(Math.random() * 100) + 1}","${Math.floor(Math.random() * 5) + 1}"`);
 
-const generateTenMilionRecords = () => {
-  const stream = fs.createWriteStream('postgres_records.csv');
-  // const stream = fs.createWriteStream('cassandra_records.csv');
+// const generateTenMilionRecords = () => {
+//   const stream = fs.createWriteStream('postgres_records.csv');
+//   // const stream = fs.createWriteStream('cassandra_records.csv');
+//   stream.write(headers);
+
+//   function writeToFile() {
+//     for (let i = 0; i < 10000000; i++) {
+//     // for (let i = 0; i < 1000; i++) {
+//       const aRecord = generateOneRecord();
+//       // const aRecord = generateOneRecord(i + 1);
+//       stream.write(aRecord);
+//     }
+//   }
+//   writeToFile();
+//   console.log('DONE WRITING CSV FILE');
+// };
+
+// generateTenMilionRecords();
+
+function generateTenMilionRecords() {
+  const stream = fs.createWriteStream('./sv/db/csv-generator/postgres_records.csv');
   stream.write(headers);
 
+  // let i = 100;
+  let i = 10000000;
   function writeToFile() {
-    for (let i = 0; i < 10000000; i++) {
-    // for (let i = 0; i < 1000; i++) {
+    let ok = true;
+    while (i > 0 && ok) {
+      i--;
       const aRecord = generateOneRecord();
-      // const aRecord = generateOneRecord(i + 1);
-      stream.write(aRecord);
+      if (i === 0) {
+        stream.write(aRecord, () => {
+          stream.end();
+        });
+      } else {
+        ok = stream.write(aRecord);
+      }
+    }
+    if (i > 0) {
+      stream.once('drain', writeToFile);
     }
   }
   writeToFile();
   console.log('DONE WRITING CSV FILE');
-};
+}
 
 generateTenMilionRecords();
 
