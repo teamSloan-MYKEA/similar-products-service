@@ -61,7 +61,6 @@ function generateTenMilionRecords() {
     }
   }
   writeToFile();
-  console.log('DONE WRITING CSV FILE');
 }
 
 generateTenMilionRecords();
