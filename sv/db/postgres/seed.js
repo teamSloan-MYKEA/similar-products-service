@@ -47,7 +47,7 @@ client.connect(err => {
   }
 });
 
-/* -------------------- DOCKER COMMAND LINES --------------------
+/* -------------------- DOCKER COMMAND LINES (ON LOCAL MACHINE)--------------------
 
 docker run --name postgresSDC -p 5432:5432 -v /Users/nathanvu/Downloads/zHackReactor/Github/SDC/similar-products-service/sv/db/csv-generator:/var/lib/postgresql/data -e POSTGRES_PASSWORD=mysecretpassword -e POSTGRES_DB=hrr47mykea -e PGDATA=/var/lib/postgresql/data/db-files/  -d postgres
 
@@ -60,5 +60,10 @@ npm run seed (taking ~ 9 mins)
 \l
 \c hrr47mykea
 
+   -------------------- DOCKER COMMAND LINES (ON AWS EC2)--------------------
+
+docker run --name postgresSDC -p 5432:5432 -v /home/ec2-user/SDC/similar-products-service/sv/db/csv-generator:/var/lib/postgresql/data -e POSTGRES_PASSWORD=mysecretpassword -e POSTGRES_DB=hrr47mykea -e PGDATA=/var/lib/postgresql/data/db-files/  -d postgres
+
+(readlink -f postgres_records.csv)
 
 */
