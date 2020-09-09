@@ -11,16 +11,18 @@ const client = new Client({
 const query = `
 DROP TABLE IF EXISTS mykea_similarproducts;
 CREATE TABLE mykea_similarproducts (
-  _id   SERIAL PRIMARY KEY  NOT NULL,
-  id           INT          NOT NULL,
+  id           SERIAL       NOT NULL,
+  productid    INT          NOT NULL,
   name         VARCHAR(25)  NOT NULL,
   description  VARCHAR(25)  NOT NULL,
   stars        INT          NOT NULL,
   price        INT          NOT NULL,
   photo1       TEXT         NOT NULL,
-  photo2       TEXT         NOT NULL
+  photo2       TEXT         NOT NULL,
+  PRIMARY KEY(id, productid)
+
 );
-COPY mykea_similarproducts(id, name, description, stars, price, photo1, photo2)
+COPY mykea_similarproducts(productid, name, description, stars, price, photo1, photo2)
 FROM '/var/lib/postgresql/data/postgres_records.csv'
 DELIMITER ','
 CSV HEADER;
@@ -55,7 +57,7 @@ docker exec -it postgresSDC bash
 
 psql -U postgres
 
-npm run seed (taking ~ 9 mins)
+npm run seed (taking ~ 79 mins)
 
 \l
 \c hrr47mykea

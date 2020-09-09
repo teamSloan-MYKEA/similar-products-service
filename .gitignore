@@ -6,6 +6,7 @@ hints
 saved_caches
 cassandra_records.csv
 postgres_records.csv
+postgres_records(100x10).csv
 newrelic.js
 ## MAC files ##
 .DS_Store

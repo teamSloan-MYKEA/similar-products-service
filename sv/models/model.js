@@ -13,7 +13,7 @@ client.connect(err => {
 
 module.exports = {
   getLimit: (id, callback) => {
-    const queryStr = `SELECT * FROM mykea_similarproducts WHERE id=${id} LIMIT 20;`;
+    const queryStr = `SELECT * FROM mykea_similarproducts WHERE productid=${id};`;
     client.query(queryStr, (err, results) => {
       callback(err, results);
     });
