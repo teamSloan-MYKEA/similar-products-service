@@ -2,6 +2,7 @@ require('newrelic');
 
 const express = require('express');
 const path = require('path');
+const compression = require('compression');
 const cors = require('cors');
 
 const controllers = require('./controllers/controller.js');
@@ -9,6 +10,7 @@ const controllers = require('./controllers/controller.js');
 const app = express();
 const port = 3001;
 
+app.use(compression());
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

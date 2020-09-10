@@ -11,7 +11,7 @@
     "start": "nodemon ./sv/server.js --watch",
     "csv": "node ./sv/db/csv-generator/feedCSV.js",
     "seed": "node ./sv/db/postgres/seed.js",
-    "stress-testing" : "$(npm bin)/artillery run ./sv/artillery/artillery-script.yaml",
+    "stress-testing": "$(npm bin)/artillery run ./sv/artillery/artillery-script.yaml",
     "test": "jest",
     "oldstart": "nodemon ./server/index.js --watch",
     "oldseed": "node ./seed.js"
@@ -27,6 +27,7 @@
     "axios": "^0.19.2",
     "babel-jest": "^26.3.0",
     "cassandra-driver": "^4.6.0",
+    "compression": "^1.7.4",
     "cors": "^2.8.5",
     "eslint": "^7.6.0",
     "eslint-config-airbnb": "^18.2.0",
@@ -44,6 +45,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "redis": "^3.0.2",
     "styled-components": "^5.1.1"
   },
   "devDependencies": {
