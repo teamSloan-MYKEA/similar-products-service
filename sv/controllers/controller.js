@@ -8,7 +8,7 @@ module.exports = {
       if (err) {
         res.send('CONTROLLER-GET FAILS', err);
       }
-      res.send(results.rows);
+      res.send(results);
     });
   },
   post: (req, res) => {

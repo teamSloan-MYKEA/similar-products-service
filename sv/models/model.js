@@ -1,4 +1,6 @@
 const { Client } = require('pg');
+const redis = require('redis');
+const portRedis = 6379;
 const postgresConfig = require('../db/config');
 
 const client = new Client(postgresConfig);
@@ -11,11 +13,26 @@ client.connect(err => {
   }
 });
 
+const redisClient = redis.createClient(portRedis);
+redisClient.on('connect', () => {
+  console.log('CONNECTING TO REDIS SUCCESS');
+}).on('error', (error) => {
+  console.log('CONNECTING TO REDIS SUCCESS', error);
+});
+
 module.exports = {
   getLimit: (id, callback) => {
-    const queryStr = `SELECT * FROM mykea_similarproducts WHERE productid=${id};`;
-    client.query(queryStr, (err, results) => {
-      callback(err, results);
+    redisClient.get(id, (err, data) => {
+      if (err || !data) {
+        console.log('REDIS DATA NOT FOUND, PROCESS WITH ONLY POSTGRESS INSTEAD', err);
+        const queryStr = `SELECT * FROM mykea_similarproducts WHERE productid=${id};`;
+        client.query(queryStr, (error, results) => {
+          redisClient.setex(id, 3600, JSON.stringify(results.rows));
+          callback(error, results.rows);
+        });
+      } else {
+        callback(err, JSON.parse(data));
+      }
     });
   },
   createOne: (params, callback) => {
@@ -37,3 +54,18 @@ module.exports = {
     });
   },
 };
+
+/* -------------------- DOCKER COMMAND LINES (ON LOCAL MACHINE)--------------------
+
+docker run --name redisSDC -p 6379:6379 -d redis redis-server --appendonly yes
+
+docker exec -it redisSDC bash
+
+redis-cli
+(pong)
+
+(keys *)
+(get #)
+(flushall)
+
+*/
