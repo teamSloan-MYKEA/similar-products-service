@@ -15,12 +15,12 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/:id', express.static(path.join(__dirname, './../public')));
-
 app.get('/loaderio-', (req, res) => {
   console.log('LOADERIO VERIFYING');
   res.status(200).send('loaderio-');
 });
+
+app.use('/:id', express.static(path.join(__dirname, './../public')));
 
 app.get('/:id/similar/:id', controllers.get);
 app.post('/:id/similar/:id', controllers.post);
