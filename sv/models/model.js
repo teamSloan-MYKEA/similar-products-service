@@ -24,10 +24,10 @@ module.exports = {
   getLimit: (id, callback) => {
     redisClient.get(id, (err, data) => {
       if (err || !data) {
-        console.log('REDIS DATA NOT FOUND, PROCESS WITH ONLY POSTGRESS INSTEAD', err);
+        console.log(`REDIS DATA NOT FOUND FOR ID ${id}, ACCESSING POSTGRESS DATABASE INSTEAD, PLEASE WAIT`);
         const queryStr = `SELECT * FROM mykea_similarproducts WHERE productid=${id};`;
         client.query(queryStr, (error, results) => {
-          redisClient.setex(id, 3600, JSON.stringify(results.rows));
+          redisClient.set(id, JSON.stringify(results.rows));
           callback(error, results.rows);
         });
       } else {
